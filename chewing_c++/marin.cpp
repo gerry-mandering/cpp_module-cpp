@@ -13,7 +13,7 @@ class	Marine {
 		Marine(int x, int y);
 		Marine(int x, int y, int damage);
 
-		int		attack();
+		int		attack() const;
 		Marine&	be_attacked(int damage_earn);
 		void	move(int x, int y);
 
@@ -39,7 +39,7 @@ Marine::Marine(int x, int y, int damage) : hp(50), coord_x(x), coord_y(y), damag
 	this->total_marine_number++;
 }
 
-int	Marine::attack() {
+int	Marine::attack() const {
 	return this->damage;
 }
 
@@ -88,7 +88,7 @@ int	main(void) {
 	create_marine();
 
 	std::cout << std::endl << "Marine1 attacked Marine2!!" << std::endl;
-	marine2.be_attacked(marine1.attack());
+	marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 
 	marine1.show_status();
 	marine2.show_status();
