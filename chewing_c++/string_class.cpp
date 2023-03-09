@@ -37,6 +37,9 @@ class	String {
 		void	print() const;
 		void	println() const;
 
+		bool	operator==(String& input_str);
+		bool	operator==(const char* input_str);
+
 		~String();
 };
 
@@ -295,6 +298,14 @@ void	String::println() const {
 	std::cout << std::endl;
 }
 
+bool	String::operator==(String &input_str) {
+	return !compare(input_str.str);
+}
+
+bool	String::operator==(const char* input_str) {
+	return !compare(input_str);
+}
+
 String::~String() {
 	if (this->str != nullptr)
 		delete[] this->str;
@@ -316,7 +327,12 @@ int	main(void) {
 	str1.println();
 
 	String	str3("abcd");
+	String	str4("abcd");
 
+	if (str3 == str4)
+		std::cout << "operator == " << std::endl;
+	if (str3 == "acd")
+		std::cout << "operator == " << std::endl;
 	std::cout << "compare : " << str3.compare("abcc") << std::endl;
 	std::cout << str3.find(0, "bc") << std::endl;
 	str3.println();
