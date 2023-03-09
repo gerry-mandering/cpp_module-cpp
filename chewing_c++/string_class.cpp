@@ -14,7 +14,7 @@ class	String {
 
 		int		strlen() const;
 		void	strjoin(const char* input_str);
-		int		strcmp(const char* input_str);
+		int		compare(const char* input_str);
 
 		String&	assign(const char* input_str);
 		String&	assign(const String& input_str);
@@ -27,6 +27,12 @@ class	String {
 		String&	insert(int loc, const String& input_str);
 		String&	insert(int loc, const char* input_str);
 		String&	insert(int loc, char c);
+
+		String&	erase(int loc, int num);
+
+		int		find(int find_from, String& input_str) const;
+		int		find(int find_from, const char *input_str) const;
+		int		find(int find_from, char c) const;
 
 		void	print() const;
 		void	println() const;
@@ -103,7 +109,7 @@ void	String::strjoin(const char *input_str) {
 	this->length = total_length;
 }
 
-int	String::strcmp(const char *input_str) {
+int	String::compare(const char *input_str) {
 	int	input_str_length;
 	int	i;
 
@@ -233,6 +239,49 @@ String&	String::insert(int loc, char c) {
 	return *this;
 }
 
+String&	String::erase(int loc, int num) {
+	if (num <= 0 || loc < 0 || loc > this->length)
+		return *this;
+
+	for (int i = loc; i < loc + num; i++)
+		this->str[i] = this->str[i + num];
+
+	this->length -= num;
+
+	return *this;
+}
+
+int	String::find(int find_from, String& input_str) const {
+	int	i, j;
+
+	if (input_str.length == 0)
+		return -1;
+	i = find_from;
+	while (this->str[i] != '\0') {
+		if (this->str[i] == input_str.str[0]) {
+			j = 0;
+			while (this->str[i + j] == input_str.str[j])
+				j++;
+			if (j == input_str.length)
+				return i;
+		}
+		i++;
+	}
+	return -1;
+}
+
+int	String::find(int find_from, const char* input_str) const {
+	String	temp(input_str);
+
+	return find(find_from, temp);
+}
+
+int	String::find(int find_from, char c) const {
+	String	temp(c);
+
+	return find(find_from, temp);
+}
+
 void	String::print() const {
 	for (int i = 0; i < this->length; i++) {
 		std::cout << this->str[i];
@@ -265,6 +314,14 @@ int	main(void) {
 	std::cout << "Capacity : " << str1.capacity() << std::endl;
 	std::cout << "String length : " << str1.strlen() << std::endl;
 	str1.println();
+
+	String	str3("abcd");
+
+	std::cout << "compare : " << str3.compare("abcc") << std::endl;
+	std::cout << str3.find(0, "bc") << std::endl;
+	str3.println();
+	str3.erase(1, 3);
+	str3.println();
 
 	return 0;
 }
