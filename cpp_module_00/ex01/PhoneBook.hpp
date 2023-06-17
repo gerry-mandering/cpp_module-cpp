@@ -5,16 +5,20 @@
 #include "Contact.hpp"
 
 class PhoneBook {
-	private:
-		Contact	contact_array[8];
-		int		current_index;
-		int		total_contact;
+private:
+    Contact contacts[8];
+    int current_index;
+    int total_contact;
 
-	public:
-		PhoneBook();
+    void print_phonebook();
+    void print_contact();
 
-		void	Add();
-		void	Search();
+public:
+    PhoneBook();
+
+    void Add();
+
+    void Search();
 };
 
 #endif
