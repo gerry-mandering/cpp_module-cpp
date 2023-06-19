@@ -1,6 +1,5 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
-#include <iostream>
 
 #define FIELD_SIZE 5
 

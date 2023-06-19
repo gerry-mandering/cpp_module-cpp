@@ -114,6 +114,5 @@ void Account::_displayTimestamp(void) {
     std::cout << "[" << timeStamp << "] ";
 }
 
-Account::Account(void) {
-}
+Account::Account(void) {}
 
