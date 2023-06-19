@@ -5,38 +5,38 @@
 
 class Contact {
 private:
-    std::string first_name;
-    std::string last_name;
-    std::string nick_name;
-    std::string phone_number;
-    std::string darkest_secret;
+    std::string mFirstName;
+    std::string mLastName;
+    std::string mNickName;
+    std::string mPhoneNumber;
+    std::string mDarkestSecret;
 
 public:
     Contact();
 
     typedef void (Contact::*SetterFunction)(const std::string&);
 
-    SetterFunction setters[5];
+    SetterFunction Setters[5];
 
-    void setFirstName(const std::string &first_name);
+    void SetFirstName(const std::string &firstName);
 
-    void setLastName(const std::string &last_name);
+    void SetLastName(const std::string &lastName);
 
-    void setNickname(const std::string &nickname);
+    void SetNickname(const std::string &nickName);
 
-    void setPhoneNumber(const std::string &phone_number);
+    void SetPhoneNumber(const std::string &phoneNumber);
 
-    void setDarkestSecret(const std::string &darkest_secret);
+    void SetDarkestSecret(const std::string &darkestSecret);
 
-    const std::string &getFirstName() const;
+    const std::string &GetFirstName() const;
 
-    const std::string &getLastName() const;
+    const std::string &GetLastName() const;
 
-    const std::string &getNickName() const;
+    const std::string &GetNickName() const;
 
-    const std::string &getPhoneNumber() const;
+    const std::string &GetPhoneNumber() const;
 
-    const std::string &getDarkestSecret() const;
+    const std::string &GetDarkestSecret() const;
 };
 
 #endif

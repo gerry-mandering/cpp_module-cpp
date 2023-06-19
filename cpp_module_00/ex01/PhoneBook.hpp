@@ -1,17 +1,22 @@
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
 
-#include <iostream>
 #include "Contact.hpp"
+#include <iostream>
 
 class PhoneBook {
 private:
-    Contact contacts[8];
-    int current_index;
-    int total_contact;
+    Contact mContacts[8];
+    int mCurrentIndex;
+    int mTotalContact;
 
-    void print_phonebook();
-    void print_contact();
+    void newContact(Contact &contact);
+
+    void printPhoneBook();
+
+    std::string conformForm(const std::string &input);
+
+    void printContact(int &index);
 
 public:
     PhoneBook();

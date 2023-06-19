@@ -1,15 +1,14 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
-#include <limits>
 
 #define FIELD_SIZE 5
 
 PhoneBook::PhoneBook() {
-    this->current_index = 0;
-    this->total_contact = 0;
+    this->mCurrentIndex = 0;
+    this->mTotalContact = 0;
 }
 
-void get_new_contact(Contact &new_contact) {
+void PhoneBook::newContact(Contact &contact) {
     std::string input;
     std::string fields[FIELD_SIZE] = {
             "First Name",
@@ -18,88 +17,93 @@ void get_new_contact(Contact &new_contact) {
             "Phone Number",
             "Darkest Secret",
     };
+    int i = 0;
 
-    for (int i = 0; i < FIELD_SIZE; i++) {
-        std::cout << fields[i] << ": ";
-
-        reenter:
-        std::cin >> input;
+    while (i < FIELD_SIZE) {
+        std::cout << fields[i] << ":\n";
+        getline(std::cin, input);
 
         if (std::cin.eof()) {
-            std::cout << "\nEOF condition has been encountered!" << std::endl;
+            std::cout << "\nEOF condition has been encountered!\n";
             std::cin.clear();
             clearerr(stdin);
-            std::cout << "Reenter " << fields[i] << ": ";
-            goto reenter;
+            continue;
         }
 
-        (new_contact.*(new_contact.setters[i]))(input);
+        (contact.*(contact.Setters[i++]))(input);
     }
-    std::cout << std::endl;
 }
 
 void PhoneBook::Add() {
-    Contact new_contact;
+    Contact contact;
 
-    get_new_contact(new_contact);
+    newContact(contact);
 
-    contacts[this->current_index++] = new_contact;
+    mContacts[this->mCurrentIndex++] = contact;
 
-    if (this->current_index == 8)
-        this->current_index = 0;
-    if (total_contact != 8)
-        this->total_contact++;
+    if (this->mCurrentIndex == 8)
+        this->mCurrentIndex = 0;
+    if (mTotalContact != 8)
+        this->mTotalContact++;
 }
 
-void PhoneBook::print_phonebook() {
-    for (int i = 0; i < total_contact; i++) {
+std::string PhoneBook::conformForm(const std::string &input) {
+    if (input.size() <= 10)
+        return input;
+    return input.substr(0, 9) + ".";
+}
+
+void PhoneBook::printPhoneBook() {
+    for (int i = 0; i < mTotalContact; i++) {
         std::cout.width(10);
         std::cout << i << "|";
         std::cout.width(10);
-        std::cout << contacts[i].getFirstName() << "|";
+        std::cout << conformForm(mContacts[i].GetFirstName()) << "|";
         std::cout.width(10);
-        std::cout << contacts[i].getLastName() << "|";
+        std::cout << conformForm(mContacts[i].GetLastName()) << "|";
         std::cout.width(10);
-        std::cout << contacts[i].getNickName() << "|";
+        std::cout << conformForm(mContacts[i].GetNickName()) << std::endl;
     }
 }
 
-void PhoneBook::print_contact(int &index) {
-
+void PhoneBook::printContact(int &index) {
+    std::cout << "First Name: " << mContacts[index].GetFirstName() + "\n";
+    std::cout << "Last Name: " << mContacts[index].GetLastName() + "\n";
+    std::cout << "Nick Name: " << mContacts[index].GetNickName() + "\n";
+    std::cout << "Phone Number: " << mContacts[index].GetPhoneNumber() + "\n";
+    std::cout << "Darkest Secret: " << mContacts[index].GetDarkestSecret() + "\n";
 }
 
 void PhoneBook::Search() {
     int index;
 
-    if (total_contact == 0) {
-        std::cout << "PhoneBook is Empty!\n\n";
+    if (mTotalContact == 0) {
+        std::cout << "PhoneBook is Empty!\n";
         return;
     }
 
-    print_phonebook();
+    printPhoneBook();
 
-    std::cout << "Please enter the index: ";
-
-    reenter:
+    REENTER:
+    std::cout << "Please enter the index:\n";
     std::cin >> index;
 
     if (std::cin.eof()) {
-        std::cout << "\nEOF condition has been encountered!" << std::endl;
+        std::cout << "\nEOF condition has been encountered!\n";
         std::cin.clear();
         clearerr(stdin);
-        std::cout << "Reenter " << fields[i] << ": ";
-        goto reenter;
+        goto REENTER;
     } else if (std::cin.fail()) {
-        std::cout << "\nWrong input was entered!" << std::endl;
+        std::cout << "Wrong type was entered!\n";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Reenter " << fields[i] << ": ";
-        goto reenter;
-    } else if (index < 0 || index > total_contact - 1) {
-        std::cout << "\nIndex is out of range!" << std::endl;
-        std::cout << "Reenter " << fields[i] << ": ";
-        goto reenter;
+        goto REENTER;
+    } else if (index < 0 || index > mTotalContact - 1) {
+        std::cout << "Index is out of range!\n";
+        goto REENTER;
     }
 
-    print_contact(index);
+    std::cin.ignore();
+
+    printContact(index);
 }

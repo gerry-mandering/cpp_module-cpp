@@ -1,38 +1,35 @@
 #include "PhoneBook.hpp"
 
-void execute_command(const std::string &command, PhoneBook &phoneBook, bool &exit_flag);
+void executeCommand(const std::string &command, PhoneBook &phoneBook);
 
 int main(void) {
-    PhoneBook phonebook;
+    PhoneBook phoneBook;
     std::string command;
-    bool exit_flag = false;
 
-    while (!exit_flag) {
-        std::cout << "Please enter the command: ";
-
-        reenter:
-        std::cin >> command;
+    while (true) {
+        std::cout << "Please enter the command:\n";
+        getline(std::cin, command);
 
         if (std::cin.eof()) {
-            std::cout << "\nEOF condition has been encountered!\n\n";
+            std::cout << "\nEOF condition has been encountered!\n";
             std::cin.clear();
             clearerr(stdin);
-            std::cout << "Please reenter the command: ";
-            goto reenter;
+            continue;
         }
 
-        execute_command(command, phonebook, exit_flag);
+        if (command == "EXIT")
+            break;
+
+        executeCommand(command, phoneBook);
     }
     return 0;
 }
 
-void execute_command(const std::string &command, PhoneBook &phonebook, bool &exit_flag) {
-    if (command == "EXIT")
-        exit_flag = true;
-    else if (command == "ADD")
-        phonebook.Add();
+void executeCommand(const std::string &command, PhoneBook &phoneBook) {
+    if (command == "ADD")
+        phoneBook.Add();
     else if (command == "SEARCH")
-        phonebook.Search();
+        phoneBook.Search();
     else
-        std::cout << "Wrong Command! Please Enter Again!\n\n";
+        std::cout << "Wrong Command! Please Enter Again!\n";
 }
