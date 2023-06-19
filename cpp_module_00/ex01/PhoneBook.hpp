@@ -2,7 +2,6 @@
 #define PHONEBOOK_H
 
 #include "Contact.hpp"
-#include <iostream>
 
 class PhoneBook {
 private:
@@ -10,20 +9,20 @@ private:
     int mCurrentIndex;
     int mTotalContact;
 
-    void newContact(Contact &contact);
+    void newContact(Contact &contact) const;
 
-    void printPhoneBook();
+    void printPhoneBook() const;
 
-    std::string conformForm(const std::string &input);
+    std::string conformForm(const std::string &input) const;
 
-    void printContact(int &index);
+    void printContact(int &index) const;
 
 public:
     PhoneBook();
 
     void Add();
 
-    void Search();
+    void Search() const;
 };
 
 #endif

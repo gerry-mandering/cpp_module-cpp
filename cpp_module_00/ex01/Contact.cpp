@@ -1,4 +1,5 @@
 #include "Contact.hpp"
+#include <iostream>
 
 Contact::Contact() {
     this->Setters[0] = &Contact::SetFirstName;

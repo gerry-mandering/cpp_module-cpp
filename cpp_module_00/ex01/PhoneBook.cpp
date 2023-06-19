@@ -1,5 +1,6 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
+#include <iostream>
 
 #define FIELD_SIZE 5
 
@@ -8,7 +9,7 @@ PhoneBook::PhoneBook() {
     this->mTotalContact = 0;
 }
 
-void PhoneBook::newContact(Contact &contact) {
+void PhoneBook::newContact(Contact &contact) const {
     std::string input;
     std::string fields[FIELD_SIZE] = {
             "First Name",
@@ -47,13 +48,13 @@ void PhoneBook::Add() {
         this->mTotalContact++;
 }
 
-std::string PhoneBook::conformForm(const std::string &input) {
+std::string PhoneBook::conformForm(const std::string &input) const {
     if (input.size() <= 10)
         return input;
     return input.substr(0, 9) + ".";
 }
 
-void PhoneBook::printPhoneBook() {
+void PhoneBook::printPhoneBook() const {
     for (int i = 0; i < mTotalContact; i++) {
         std::cout.width(10);
         std::cout << i << "|";
@@ -66,7 +67,7 @@ void PhoneBook::printPhoneBook() {
     }
 }
 
-void PhoneBook::printContact(int &index) {
+void PhoneBook::printContact(int &index) const {
     std::cout << "First Name: " << mContacts[index].GetFirstName() + "\n";
     std::cout << "Last Name: " << mContacts[index].GetLastName() + "\n";
     std::cout << "Nick Name: " << mContacts[index].GetNickName() + "\n";
@@ -74,7 +75,7 @@ void PhoneBook::printContact(int &index) {
     std::cout << "Darkest Secret: " << mContacts[index].GetDarkestSecret() + "\n";
 }
 
-void PhoneBook::Search() {
+void PhoneBook::Search() const {
     int index;
 
     if (mTotalContact == 0) {
