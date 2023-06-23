@@ -14,7 +14,7 @@ private:
 public:
     Contact();
 
-    typedef void (Contact::*SetterFunction)(const std::string&);
+    typedef void (Contact::*SetterFunction)(const std::string &);
 
     SetterFunction Setters[5];
 

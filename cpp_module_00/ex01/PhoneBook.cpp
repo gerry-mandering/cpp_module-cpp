@@ -9,7 +9,6 @@ PhoneBook::PhoneBook() {
 }
 
 void PhoneBook::newContact(Contact &contact) const {
-    std::string input;
     std::string fields[FIELD_SIZE] = {
             "First Name",
             "Last Name",
@@ -17,6 +16,7 @@ void PhoneBook::newContact(Contact &contact) const {
             "Phone Number",
             "Darkest Secret",
     };
+    std::string input;
     int i = 0;
 
     while (i < FIELD_SIZE) {
@@ -43,7 +43,7 @@ void PhoneBook::Add() {
 
     if (this->mCurrentIndex == 8)
         this->mCurrentIndex = 0;
-    if (mTotalContact != 8)
+    if (mTotalContact < 8)
         this->mTotalContact++;
 }
 
