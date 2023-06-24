@@ -26,9 +26,9 @@ public:
 
     ~Zombie(void);
 
-    void SetName(const std::string &name);
+    void setName(const std::string &name);
 
-    const std::string &GetName() const;
+    const std::string &getName() const;
 
     void announce(void);
 };

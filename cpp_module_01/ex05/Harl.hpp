@@ -1,36 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 21:36:32 by minseok2          +#+    #+#             */
-/*   Updated: 2023/06/23 21:36:32 by minseok2         ###   ########.fr       */
+/*   Created: 2023/06/24 21:28:21 by minseok2          +#+    #+#             */
+/*   Updated: 2023/06/24 21:28:21 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_H
-#define ZOMBIE_H
+#ifndef HARL_H
+#define HARL_H
+
+#define TotalComment 4
 
 #include <iostream>
 
-class Zombie {
+class Harl {
 private:
-    std::string mName;
+    void debug(void);
 
-    Zombie(void);
+    void info(void);
+
+    void warning(void);
+
+    void error(void);
 
 public:
-    Zombie(const std::string &name);
+    Harl();
 
-    ~Zombie(void);
+    void complain(std::string level);
 
-    void setName(const std::string &name);
+    enum CommentType {
+        DEBUG,
+        INFO,
+        WARNING,
+        ERROR,
+    };
 
-    const std::string &getName() const;
+    typedef void (Harl::*CommentFunction)(void);
 
-    void announce(void);
+    CommentFunction commentFunctions[5];
 };
 
 #endif
