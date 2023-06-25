@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/24 21:28:21 by minseok2          +#+    #+#             */
-/*   Updated: 2023/06/24 21:28:21 by minseok2         ###   ########.fr       */
+/*   Created: 2023/06/25 13:48:06 by minseok2          +#+    #+#             */
+/*   Updated: 2023/06/25 13:48:06 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ private:
     typedef void (Harl::*CommentFunction)(void);
 
     CommentFunction commentFunctions[5];
+
+    bool getCommentType(const std::string &level, CommentType &commentType) const;
 
 public:
     Harl();
