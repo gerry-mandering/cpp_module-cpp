@@ -4,6 +4,7 @@
 #include "Contact.hpp"
 #include <iostream>
 #include <cstdio>
+#include <limits>
 
 // ANSI Escape Code Color Define
 #define NC "\e[0m"
