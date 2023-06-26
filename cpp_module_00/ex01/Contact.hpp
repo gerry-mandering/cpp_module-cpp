@@ -15,28 +15,19 @@ public:
     Contact();
 
     typedef void (Contact::*SetterFunction)(const std::string &);
+    SetterFunction setters[5];
 
-    SetterFunction Setters[5];
+    void setFirstName(const std::string &firstName);
+    void setLastName(const std::string &lastName);
+    void setNickname(const std::string &nickName);
+    void setPhoneNumber(const std::string &phoneNumber);
+    void setDarkestSecret(const std::string &darkestSecret);
 
-    void SetFirstName(const std::string &firstName);
-
-    void SetLastName(const std::string &lastName);
-
-    void SetNickname(const std::string &nickName);
-
-    void SetPhoneNumber(const std::string &phoneNumber);
-
-    void SetDarkestSecret(const std::string &darkestSecret);
-
-    const std::string &GetFirstName() const;
-
-    const std::string &GetLastName() const;
-
-    const std::string &GetNickName() const;
-
-    const std::string &GetPhoneNumber() const;
-
-    const std::string &GetDarkestSecret() const;
+    const std::string &getFirstName() const;
+    const std::string &getLastName() const;
+    const std::string &getNickName() const;
+    const std::string &getPhoneNumber() const;
+    const std::string &getDarkestSecret() const;
 };
 
 #endif

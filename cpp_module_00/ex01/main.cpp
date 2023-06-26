@@ -8,11 +8,13 @@ int main(void) {
     std::string command;
 
     while (true) {
-        std::cout << "Please enter the command:\n";
+        std::cout
+                << GRN "Available Command => ADD, SEARCH, EXIT" NC << std::endl
+                << "Please enter the command: " << std::endl;
         getline(std::cin, command);
 
         if (std::cin.eof()) {
-            std::cout << "\nEOF condition has been encountered!\n";
+            std::cout << RED "\nEOF condition has been encountered!\n" NC << std::endl;
             std::cin.clear();
             clearerr(stdin);
             continue;
@@ -32,5 +34,5 @@ void executeCommand(const std::string &command, PhoneBook &phoneBook) {
     else if (command == "SEARCH")
         phoneBook.Search();
     else
-        std::cout << "Wrong Command! Please Enter Again!\n";
+        std::cout << RED "Wrong Command! Please Enter Again!\n" NC << std::endl;
 }

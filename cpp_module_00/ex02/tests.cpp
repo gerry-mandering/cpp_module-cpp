@@ -19,24 +19,18 @@ int		main( void ) {
 	typedef std::vector<int>								  ints_t;
 	typedef std::pair<accounts_t::iterator, ints_t::iterator> acc_int_t;
 
-    //amounts 배열 생성
 	int	const				amounts[]	= { 42, 54, 957, 432, 1234, 0, 754, 16576 };
-    //amounts 배열의 사이즈
 	size_t const			amounts_size( sizeof(amounts) / sizeof(int) );
-    //amounts 배열을 accounts_t 벡터로 복사함 (int형을 받는 constructor가 있어야 함)
 	accounts_t				accounts( amounts, amounts + amounts_size );
-    //accounts_t 벡터의 iterator
 	accounts_t::iterator	acc_begin	= accounts.begin();
 	accounts_t::iterator	acc_end		= accounts.end();
 
-    //입금
 	int	const			d[]			= { 5, 765, 564, 2, 87, 23, 9, 20 };
 	size_t const		d_size( sizeof(d) / sizeof(int) );
 	ints_t				deposits( d, d + d_size );
 	ints_t::iterator	dep_begin	= deposits.begin();
 	ints_t::iterator	dep_end		= deposits.end();
 
-    //인출
 	int	const			w[]			= { 321, 34, 657, 4, 76, 275, 657, 7654 };
 	size_t const		w_size( sizeof(w) / sizeof(int) );
 	ints_t				withdrawals( w, w + w_size );
