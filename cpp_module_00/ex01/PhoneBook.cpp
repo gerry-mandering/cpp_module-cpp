@@ -23,7 +23,7 @@ void PhoneBook::Search() const {
     int index;
 
     if (mTotalContact == 0) {
-        std::cout << RED "PhoneBook is Empty!" NC << std::endl;
+        std::cout << RED "PhoneBook is Empty!\n" NC << std::endl;
         return;
     }
 
@@ -77,6 +77,7 @@ void PhoneBook::newContact(Contact &contact) const {
 
         (contact.*(contact.setters[i++]))(input);
     }
+    std::cout << std::endl;
 }
 
 std::string PhoneBook::conformForm(const std::string &input) const {
