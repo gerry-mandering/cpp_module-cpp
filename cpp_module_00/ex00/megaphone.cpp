@@ -27,7 +27,8 @@ void printUpperCaseMsg(int argc, char **argv) {
     int length;
 
     for (int i = 1; i < argc; i++) {
-        length = std::strlen(argv[i]);
+        std::string input(argv[i]);
+        length = input.length();
 
         for (int j = 0; j < length; j++)
             std::cout << (char) std::toupper(argv[i][j]);
