@@ -1,5 +1,9 @@
 #include "Account.hpp"
 #include <iostream>
+#include <ctime>
+
+// nullptr Define
+#define nullptr 0
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
