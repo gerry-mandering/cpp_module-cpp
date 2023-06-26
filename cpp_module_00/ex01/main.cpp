@@ -11,7 +11,7 @@ int main(void) {
         std::cout
                 << GRN "Available Command => ADD, SEARCH, EXIT" NC << std::endl
                 << "Please enter the command: " << std::endl;
-        getline(std::cin, command);
+        std::getline(std::cin, command);
 
         if (std::cin.eof()) {
             std::cout << RED "\nEOF condition has been encountered!\n" NC << std::endl;

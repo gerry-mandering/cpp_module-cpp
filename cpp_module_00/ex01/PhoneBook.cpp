@@ -66,7 +66,7 @@ void PhoneBook::newContact(Contact &contact) const {
 
     while (i < FIELD_SIZE) {
         std::cout << fields[i] << ": " << std::endl;
-        getline(std::cin, input);
+        std::getline(std::cin, input);
 
         if (std::cin.eof()) {
             std::cout << RED "\nEOF condition has been encountered!\n" NC << std::endl;
