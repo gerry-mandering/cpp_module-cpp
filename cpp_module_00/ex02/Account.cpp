@@ -2,9 +2,6 @@
 #include <iostream>
 #include <ctime>
 
-// nullptr Define
-#define nullptr 0
-
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
@@ -119,7 +116,7 @@ void Account::displayStatus(void) const {
 
 void Account::_displayTimestamp(void) {
     char timeStamp[20];
-    std::time_t now = std::time(nullptr);
+    std::time_t now = std::time(0);
 
     std::strftime(timeStamp, sizeof(timeStamp), "%Y%m%d_%H%M%S", std::localtime(&now));
     std::cout << "[" << timeStamp << "] ";
