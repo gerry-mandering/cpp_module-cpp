@@ -3,6 +3,7 @@
 
 #include "Contact.hpp"
 #include <iostream>
+#include <iomanip>
 #include <cstdio>
 #include <limits>
 

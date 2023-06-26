@@ -89,15 +89,12 @@ std::string PhoneBook::conformForm(const std::string &input) const {
 void PhoneBook::printPhoneBook() const {
     std::cout << std::endl;
     for (int i = 0; i < mTotalContact; i++) {
-        std::cout.width(10);
-        std::cout << i << "|";
-        std::cout.width(10);
-        std::cout << conformForm(mContacts[i].getFirstName()) << "|";
-        std::cout.width(10);
-        std::cout << conformForm(mContacts[i].getLastName()) << "|";
-        std::cout.width(10);
-        std::cout << conformForm(mContacts[i].getNickName()) << std::endl;
-        std::cout << std::endl;
+        std::cout
+                << std::setw(10) << i << "|"
+                << std::setw(10) << conformForm(mContacts[i].getFirstName()) << "|"
+                << std::setw(10) << conformForm(mContacts[i].getLastName()) << "|"
+                << std::setw(10) << conformForm(mContacts[i].getNickName()) << std::endl
+                << std::endl;
     }
 }
 
