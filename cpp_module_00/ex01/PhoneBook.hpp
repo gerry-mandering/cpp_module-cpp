@@ -3,6 +3,7 @@
 
 #include "Contact.hpp"
 #include <iostream>
+#include <cstdio>
 
 // ANSI Escape Code Color Define
 #define NC "\e[0m"
