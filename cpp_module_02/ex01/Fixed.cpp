@@ -49,6 +49,13 @@ Fixed &Fixed::operator=(const Fixed &fixed) {
     return *this;
 }
 
+//연산자 오버로딩 왜 Fixed:: 없는지
+std::ostream &operator<<(std::ostream &output, const Fixed &fixed) {
+    output << fixed.toFloat();
+
+    return output;
+}
+
 int Fixed::getRawBits(void) const {
     return this->mNumber;
 }
@@ -58,9 +65,9 @@ void Fixed::setRawBits(int const raw) {
 }
 
 float Fixed::toFloat(void) const {
-    return (float) (this->mNumber / (1 << this->mFractionalBitCount));
+    return (this->mNumber / (float) (1 << this->mFractionalBitCount));
 }
 
 int Fixed::toInt(void) const {
-    return (int) (this->mNumber / (1 << this->mFractionalBitCount));
+    return (this->mNumber / (1 << this->mFractionalBitCount));
 }

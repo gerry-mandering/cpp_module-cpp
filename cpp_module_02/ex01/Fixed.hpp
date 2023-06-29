@@ -36,7 +36,7 @@ public:
 
     Fixed &operator=(const Fixed &fixed);
 
-    std::ostream &operator<<(std::ostream &output, const Fixed &fixed);
+//    friend std::ostream &operator<<(std::ostream &output, const Fixed &fixed); ㅇㅣ런 식의 동작은 됐지만 왜 되는지
 
     int getRawBits(void) const;
 
@@ -47,10 +47,6 @@ public:
     int toInt(void) const;
 };
 
-std::ostream &Fixed::operator<<(std::ostream &output, const Fixed &fixed) {
-    output << fixed.getRawBits();
-
-    return output;
-}
+std::ostream &operator<<(std::ostream &output, const Fixed &fixed);
 
 #endif
