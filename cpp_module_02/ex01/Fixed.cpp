@@ -21,23 +21,23 @@ Fixed::Fixed() {
 Fixed::Fixed(const int number) {
     std::cout << "Int constructor called" << std::endl;
 
-    this->mNumber = round(number * (1 << this->mFractionalBitCount));
+    this->mNumber = roundf(number * (1 << this->mFractionalBitCount));
 }
 
 Fixed::Fixed(const float number) {
     std::cout << "Float constructor called" << std::endl;
 
-    this->mNumber = round(number * (1 << this->mFractionalBitCount));
-}
-
-Fixed::~Fixed() {
-    std::cout << "Destructor called" << std::endl;
+    this->mNumber = roundf(number * (1 << this->mFractionalBitCount));
 }
 
 Fixed::Fixed(const Fixed &fixed) {
     std::cout << "Copy constructor called" << std::endl;
 
     *this = fixed;
+}
+
+Fixed::~Fixed() {
+    std::cout << "Destructor called" << std::endl;
 }
 
 Fixed &Fixed::operator=(const Fixed &fixed) {

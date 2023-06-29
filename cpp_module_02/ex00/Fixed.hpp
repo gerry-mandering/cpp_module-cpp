@@ -14,6 +14,7 @@
 #define FIXED_H
 
 #include <iostream>
+#include <cmath>
 
 typedef int fixed_point_t;
 
@@ -26,9 +27,9 @@ private:
 public:
     Fixed();
 
-    ~Fixed();
-
     Fixed(const Fixed &fixed);
+
+    ~Fixed();
 
     Fixed &operator=(const Fixed &fixed);
 

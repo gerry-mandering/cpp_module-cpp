@@ -30,9 +30,9 @@ public:
 
     Fixed(const float number);
 
-    ~Fixed();
-
     Fixed(const Fixed &fixed);
+
+    ~Fixed();
 
     Fixed &operator=(const Fixed &fixed);
 

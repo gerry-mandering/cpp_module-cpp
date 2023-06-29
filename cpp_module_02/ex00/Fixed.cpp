@@ -18,14 +18,14 @@ Fixed::Fixed() {
     this->mNumber = 0;
 }
 
-Fixed::~Fixed() {
-    std::cout << "Destructor called" << std::endl;
-}
-
 Fixed::Fixed(const Fixed &fixed) {
     std::cout << "Copy constructor called" << std::endl;
 
     this->mNumber = fixed.getRawBits();
+}
+
+Fixed::~Fixed() {
+    std::cout << "Destructor called" << std::endl;
 }
 
 Fixed &Fixed::operator=(const Fixed &fixed) {
