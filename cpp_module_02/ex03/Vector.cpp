@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Point.hpp                                          :+:      :+:    :+:   */
+/*   Vector.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,28 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_H
-#define POINT_H
+#include "Vector.hpp"
 
-#include "Fixed.hpp"
+Vector::Vector() {
+    this->mVector = Point();
+}
 
-class Point {
-private:
-    const Fixed x;
-    const Fixed y;
+Vector::Vector(const Point tail, const Point head) {
+    this->mVector = Point(head.x - tail.x, head.y - tail.y);
+}
 
-public:
-    Point();
+Vector::Vector(const Vector &vector) {
+    *this = vector;
+}
 
-    Point(const float x, const float y);
+Vector::~Vector() {}
 
-    Point(const Point &point);
+Vector &Vector::operator=(const Vector &vector) {
+    if (this != &vector)
+        this->mVector = vector.mVector;
 
-    ~Point();
+    return *this;
+}
 
-    Point &operator=(const Point &point);
+Fixed Vector::getCrossProductMagnitude(const Vector &vector) const {
+    Fixed crossProductMagnitude((this->mVector.x * vector.mVector.y)
+                                - (this->mVector.y * vector.mVector.y));
 
-    typedef Point Vector;
-};
-
-#endif
+    return crossProductMagnitude;
+}

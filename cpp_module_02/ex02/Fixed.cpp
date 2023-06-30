@@ -15,19 +15,7 @@
 Fixed::Fixed() {
 //    std::cout << "Default constructor called" << std::endl;
 
-    this->mNumber = 0;
-}
-
-Fixed::Fixed(const int number) {
-//    std::cout << "Int constructor called" << std::endl;
-
-    this->mNumber = roundf(number * (1 << this->mFractionalBitCount));
-}
-
-Fixed::Fixed(const float number) {
-//    std::cout << "Float constructor called" << std::endl;
-
-    this->mNumber = roundf(number * (1 << this->mFractionalBitCount));
+    this->mRaw = 0;
 }
 
 Fixed::~Fixed() {
@@ -44,9 +32,22 @@ Fixed &Fixed::operator=(const Fixed &fixed) {
 //    std::cout << "Copy assignment operator called" << std::endl;
 
     if (this != &fixed)
-        this->mNumber = fixed.getRawBits();
+        this->mRaw = fixed.getRawBits();
 
     return *this;
+}
+
+
+Fixed::Fixed(const int number) {
+//    std::cout << "Int constructor called" << std::endl;
+
+    this->mRaw = roundf(number * (1 << this->mFractionalBitCount));
+}
+
+Fixed::Fixed(const float number) {
+//    std::cout << "Float constructor called" << std::endl;
+
+    this->mRaw = roundf(number * (1 << this->mFractionalBitCount));
 }
 
 bool Fixed::operator>(const Fixed &fixed) const {
@@ -57,89 +58,93 @@ bool Fixed::operator<(const Fixed &fixed) const {
     return this->toFloat() < fixed.toFloat();
 }
 
-bool Fixed::operator>=(const Fixed &fixed) {
+bool Fixed::operator>=(const Fixed &fixed) const {
     return this->toFloat() >= fixed.toFloat();
 }
 
-bool Fixed::operator<=(const Fixed &fixed) {
+bool Fixed::operator<=(const Fixed &fixed) const {
     return this->toFloat() <= fixed.toFloat();
 }
 
-bool Fixed::operator==(const Fixed &fixed) {
+bool Fixed::operator==(const Fixed &fixed) const {
     return this->toFloat() == fixed.toFloat();
 }
 
-bool Fixed::operator!=(const Fixed &fixed) {
+bool Fixed::operator!=(const Fixed &fixed) const {
     return this->toFloat() != fixed.toFloat();
 }
 
-Fixed Fixed::operator+(const Fixed &fixed) {
-    Fixed temp(this->getRawBits() + fixed.getRawBits());
+Fixed Fixed::operator+(const Fixed &fixed) const {
+    Fixed temp;
+    temp.setRawBits(this->getRawBits() + fixed.getRawBits());
 
     return temp;
 }
 
-Fixed Fixed::operator-(const Fixed &fixed) {
-    Fixed temp(this->getRawBits() - fixed.getRawBits());
+Fixed Fixed::operator-(const Fixed &fixed) const {
+    Fixed temp;
+    temp.setRawBits(this->getRawBits() - fixed.getRawBits());
 
     return temp;
 }
 
-Fixed Fixed::operator*(const Fixed &fixed) {
-    Fixed temp(this->getRawBits() * fixed.getRawBits() / (float) (1 << 16));
+Fixed Fixed::operator*(const Fixed &fixed) const {
+    Fixed temp;
+    temp.setRawBits(this->getRawBits() * fixed.getRawBits() / (float) (1 << 8));
 
     return temp;
 
 }
 
-Fixed Fixed::operator/(const Fixed &fixed) {
-    Fixed temp(this->getRawBits() / fixed.getRawBits());
+Fixed Fixed::operator/(const Fixed &fixed) const {
+    Fixed temp;
+    temp.setRawBits(this->getRawBits() / fixed.getRawBits() * (1 << 8));
 
     return temp;
 }
 
 Fixed &Fixed::operator++() {
-    ++(this->mNumber);
+    ++(this->mRaw);
 
     return *this;
 }
 
-Fixed Fixed::operator++(fixed_point_t) {
-    Fixed temp(*this);
+Fixed Fixed::operator++(int) {
+    Fixed temp(this->getRawBits());
 
-    ++(this->mNumber);
+    ++(this->mRaw);
 
     return temp;
 }
 
 Fixed &Fixed::operator--() {
-    --(this->mNumber);
+    --(this->mRaw);
 
     return *this;
 }
 
-Fixed Fixed::operator--(fixed_point_t) {
+Fixed Fixed::operator--(int) {
     Fixed temp(this->getRawBits());
 
-    --(temp.mNumber);
+    --(temp.mRaw);
 
     return temp;
 }
 
 int Fixed::getRawBits(void) const {
-    return this->mNumber;
+    return this->mRaw;
 }
 
 void Fixed::setRawBits(int const raw) {
-    this->mNumber = raw;
+    this->mRaw = raw;
 }
 
 float Fixed::toFloat(void) const {
-    return (this->mNumber / (float) (1 << this->mFractionalBitCount));
+    return (this->mRaw / (float) (1 << this->mFractionalBitCount));
 }
 
 int Fixed::toInt(void) const {
-    return (this->mNumber / (1 << this->mFractionalBitCount));
+    return (this->mRaw / (1 << this->mFractionalBitCount));
 }
 
 Fixed &Fixed::min(Fixed &fixedA, Fixed &fixedB) {

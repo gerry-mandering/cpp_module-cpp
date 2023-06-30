@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   Vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 18:27:37 by minseok2          +#+    #+#             */
-/*   Updated: 2023/06/26 18:27:37 by minseok2         ###   ########.fr       */
+/*   Created: 2023/06/26 18:29:34 by minseok2          +#+    #+#             */
+/*   Updated: 2023/06/26 18:29:34 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_H
-#define FIXED_H
+#ifndef VECTOR_H
+#define VECTOR_H
 
-#include <iostream>
+#include "Point.hpp"
 
-class Fixed {
+#define SIGN_MASK (1 << 31)
+
+typedef enum sign {
+    POSITIVE,
+    NEGATIVE,
+} Sign;
+
+class Vector {
 private:
-    int mRaw;
-    static const int mFractionalBitCount = 8;
+    typedef Point Vector_t;
+
+    Vector_t mVector;
 
 public:
-    Fixed();
-    ~Fixed();
-    Fixed(const Fixed &fixed);
-    Fixed &operator=(const Fixed &fixed);
+    Vector();
 
-    int getRawBits(void) const;
-    void setRawBits(int const raw);
+    Vector(const Point tail, const Point head);
+
+    Vector(const Vector &vector);
+
+    ~Vector();
+
+    Vector &operator=(const Vector &vector);
+
+    Fixed getCrossProductMagnitude(const Vector &vector) const;
 };
 
 #endif

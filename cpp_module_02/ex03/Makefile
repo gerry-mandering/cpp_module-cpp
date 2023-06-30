@@ -17,6 +17,7 @@ OBJS = $(SRCS:.cpp=.o)
 SRCS =  main.cpp \
 		Fixed.cpp \
 		Point.cpp \
+		Vector.cpp \
 		bsp.cpp \
 
 all: $(NAME)

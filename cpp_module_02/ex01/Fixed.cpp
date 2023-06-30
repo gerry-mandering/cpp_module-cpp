@@ -15,19 +15,11 @@
 Fixed::Fixed() {
     std::cout << "Default constructor called" << std::endl;
 
-    this->mNumber = 0;
+    this->mRaw = 0;
 }
 
-Fixed::Fixed(const int number) {
-    std::cout << "Int constructor called" << std::endl;
-
-    this->mNumber = roundf(number * (1 << this->mFractionalBitCount));
-}
-
-Fixed::Fixed(const float number) {
-    std::cout << "Float constructor called" << std::endl;
-
-    this->mNumber = roundf(number * (1 << this->mFractionalBitCount));
+Fixed::~Fixed() {
+    std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &fixed) {
@@ -36,17 +28,41 @@ Fixed::Fixed(const Fixed &fixed) {
     *this = fixed;
 }
 
-Fixed::~Fixed() {
-    std::cout << "Destructor called" << std::endl;
-}
-
 Fixed &Fixed::operator=(const Fixed &fixed) {
     std::cout << "Copy assignment operator called" << std::endl;
 
     if (this != &fixed)
-        this->mNumber = fixed.getRawBits();
+        this->mRaw = fixed.getRawBits();
 
     return *this;
+}
+
+Fixed::Fixed(const int number) {
+    std::cout << "Int constructor called" << std::endl;
+
+    this->mRaw = roundf(number * (1 << this->mFractionalBitCount));
+}
+
+Fixed::Fixed(const float number) {
+    std::cout << "Float constructor called" << std::endl;
+
+    this->mRaw = roundf(number * (1 << this->mFractionalBitCount));
+}
+
+int Fixed::getRawBits(void) const {
+    return this->mRaw;
+}
+
+void Fixed::setRawBits(int const raw) {
+    this->mRaw = raw;
+}
+
+float Fixed::toFloat(void) const {
+    return (this->mRaw / (float) (1 << this->mFractionalBitCount));
+}
+
+int Fixed::toInt(void) const {
+    return (this->mRaw / (1 << this->mFractionalBitCount));
 }
 
 //연산자 오버로딩 왜 Fixed:: 없는지
@@ -54,20 +70,4 @@ std::ostream &operator<<(std::ostream &output, const Fixed &fixed) {
     output << fixed.toFloat();
 
     return output;
-}
-
-int Fixed::getRawBits(void) const {
-    return this->mNumber;
-}
-
-void Fixed::setRawBits(int const raw) {
-    this->mNumber = raw;
-}
-
-float Fixed::toFloat(void) const {
-    return (this->mNumber / (float) (1 << this->mFractionalBitCount));
-}
-
-int Fixed::toInt(void) const {
-    return (this->mNumber / (1 << this->mFractionalBitCount));
 }

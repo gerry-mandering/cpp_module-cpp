@@ -12,15 +12,9 @@
 
 #include "Point.hpp"
 
-Point::Point() {
-    this->x = Fixed(0);
-    this->y = Fixed(0);
-}
+Point::Point() : x(0), y(0) {}
 
-Point::Point(const float x, const float y) {
-    this->x = Fixed(x);
-    this->y = Fixed(y);
-}
+Point::Point(const float x, const float y) : x(x), y(y) {}
 
 Point::Point(const Point &point) {
     *this = point;
@@ -32,8 +26,8 @@ Point::~Point() {
 
 Point &Point::operator=(const Point &point) {
     if (this != &point) {
-        this->x = point.x;
-        this->y = point.y;
+        this->~Point();
+        new (this) Point(point);
     }
 
     return *this;
