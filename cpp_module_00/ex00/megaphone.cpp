@@ -8,6 +8,7 @@
 
 // Function Declaration
 void printUpperCaseMsg(int argc, char **argv);
+
 void printDefaultMsg(void);
 
 int main(int argc, char **argv) {
@@ -31,7 +32,7 @@ void printUpperCaseMsg(int argc, char **argv) {
         length = input.length();
 
         for (int j = 0; j < length; j++)
-            std::cout << (char) std::toupper(argv[i][j]);
+            std::cout << static_cast<char> (std::toupper(argv[i][j]));
     }
     std::cout << std::endl;
 }
