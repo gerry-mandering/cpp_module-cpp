@@ -18,7 +18,7 @@
 class Fixed {
 private:
     int mRaw;
-    static const int mFractionalBitCount = 8;
+    static const int FRACTIONAL_BIT_COUNT = 8;
 
 public:
     Fixed();
@@ -26,6 +26,7 @@ public:
     Fixed(const Fixed &fixed);
     Fixed &operator=(const Fixed &fixed);
 
+public:
     int getRawBits(void) const;
     void setRawBits(int const raw);
 };

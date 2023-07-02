@@ -18,7 +18,7 @@
 class Fixed {
 private:
     int mRaw;
-    static const int mFractionalBitCount = 8;
+    static const int FRACTIONAL_BIT_COUNT = 8;
 
 public:
     Fixed();

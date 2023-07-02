@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: minseok2 <minseok2@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/06/26 18:29:34 by minseok2          #+#    #+#              #
-#    Updated: 2023/06/26 18:29:34 by minseok2         ###   ########.fr        #
+#    Created: 2023/07/01 16:30:52 by minseok2          #+#    #+#              #
+#    Updated: 2023/07/01 16:30:52 by minseok2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = a.out
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 OBJS = $(SRCS:.cpp=.o)
 SRCS =  main.cpp \
 		Fixed.cpp \

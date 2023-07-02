@@ -19,7 +19,7 @@
 class Fixed {
 private:
     int mRaw;
-    static const int mFractionalBitCount = 8;
+    static const int FRACTIONAL_BIT_COUNT = 8;
 
 public:
     Fixed();
@@ -30,6 +30,7 @@ public:
     Fixed(const int number);
     Fixed(const float number);
 
+public:
     bool operator>(const Fixed &fixed) const;
     bool operator<(const Fixed &fixed) const;
     bool operator>=(const Fixed &fixed) const;
@@ -48,12 +49,13 @@ public:
     Fixed operator--(int);
 
 //    friend std::ostream &operator<<(std::ostream &output, const Fixed &fixed); ㅇㅣ런 식의 동작은 됐지만 왜 되는지
-
+public:
     int getRawBits(void) const;
     void setRawBits(int const raw);
     float toFloat(void) const;
     int toInt(void) const;
 
+public:
     static Fixed &min(Fixed &fixedA, Fixed &fixedB);
     static const Fixed &min(const Fixed &fixedA, const Fixed &fixedB);
     static Fixed &max(Fixed &fixedA, Fixed &fixedB);

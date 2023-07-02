@@ -5,32 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 18:29:34 by minseok2          +#+    #+#             */
-/*   Updated: 2023/06/26 18:29:34 by minseok2         ###   ########.fr       */
+/*   Created: 2023/07/01 16:30:52 by minseok2          +#+    #+#             */
+/*   Updated: 2023/07/01 16:30:52 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Point.hpp"
+#include "Vector.hpp"
 
-// Function Declaration
-bool bsp(Point const a, Point const b, Point const c, Point const point);
+// Fuction Declaration
+bool bsp(const Point a, const Point b, const Point c, const Point point);
 
 int main(void) {
 
-    Point const a(1, 1);
-    Point const b(4, 2);
-    Point const c(3, 5);
-    Point const point(3, 3);
+    Point a(1, 1);
+    Point b(3, 5);
+    Point c(4, 2);
+    Point point(3, 3);
 
-    bool bInsideTriangle;
-
-    bInsideTriangle = bsp(a, b, c, point);
-
-    if (bInsideTriangle)
-        std::cout << "The point is inside the triangle" << std::endl;
+    if (bsp(a, b, c, point))
+        std::cout << "point is inside the triangle" << std::endl;
     else
-        std::cout << "The point is outside the triangle" << std::endl;
+        std::cout << "point is outside the triangle" << std::endl;
 
     return 0;
 }

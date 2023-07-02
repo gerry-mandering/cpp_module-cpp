@@ -15,7 +15,7 @@
 Fixed::Fixed() {
     std::cout << "Default constructor called" << std::endl;
 
-    this->mRaw = 0;
+    mRaw = 0;
 }
 
 Fixed::~Fixed() {
@@ -32,7 +32,7 @@ Fixed &Fixed::operator=(const Fixed &fixed) {
     std::cout << "Copy assignment operator called" << std::endl;
 
     if (this != &fixed)
-        this->mRaw = fixed.getRawBits();
+        mRaw = fixed.getRawBits();
 
     return *this;
 }
@@ -40,29 +40,29 @@ Fixed &Fixed::operator=(const Fixed &fixed) {
 Fixed::Fixed(const int number) {
     std::cout << "Int constructor called" << std::endl;
 
-    this->mRaw = roundf(number * (1 << this->mFractionalBitCount));
+    mRaw = roundf(number * (1 << Fixed::FRACTIONAL_BIT_COUNT));
 }
 
 Fixed::Fixed(const float number) {
     std::cout << "Float constructor called" << std::endl;
 
-    this->mRaw = roundf(number * (1 << this->mFractionalBitCount));
+    mRaw = roundf(number * (1 << Fixed::FRACTIONAL_BIT_COUNT));
 }
 
 int Fixed::getRawBits(void) const {
-    return this->mRaw;
+    return mRaw;
 }
 
 void Fixed::setRawBits(int const raw) {
-    this->mRaw = raw;
+    mRaw = raw;
 }
 
 float Fixed::toFloat(void) const {
-    return (this->mRaw / (float) (1 << this->mFractionalBitCount));
+    return mRaw / (float) (1 << Fixed::FRACTIONAL_BIT_COUNT);
 }
 
 int Fixed::toInt(void) const {
-    return (this->mRaw / (1 << this->mFractionalBitCount));
+    return mRaw / (1 << Fixed::FRACTIONAL_BIT_COUNT);
 }
 
 //연산자 오버로딩 왜 Fixed:: 없는지

@@ -5,37 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 18:29:34 by minseok2          +#+    #+#             */
-/*   Updated: 2023/06/26 18:29:34 by minseok2         ###   ########.fr       */
+/*   Created: 2023/07/01 16:30:52 by minseok2          +#+    #+#             */
+/*   Updated: 2023/07/01 16:30:52 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Vector.hpp"
 
 Vector::Vector() {
-    this->mVector = Point();
+//    std::cout << "Default constructor called" << std::endl;
 }
 
-Vector::Vector(const Point tail, const Point head) {
-    this->mVector = Point(head.x - tail.x, head.y - tail.y);
+Vector::~Vector() {
+//    std::cout << "Destructor called" << std::endl;
 }
 
 Vector::Vector(const Vector &vector) {
+//    std::cout << "Copy constructor called" << std::endl;
+
     *this = vector;
 }
 
-Vector::~Vector() {}
-
 Vector &Vector::operator=(const Vector &vector) {
-    if (this != &vector)
-        this->mVector = vector.mVector;
+//    std::cout << "Copy assignment operator called" << std::endl;
+
+    if (this != &vector) {
+        this->~Vector();
+        new(this)Vector(vector);
+    }
 
     return *this;
 }
 
-Fixed Vector::getCrossProductMagnitude(const Vector &vector) const {
-    Fixed crossProductMagnitude((this->mVector.x * vector.mVector.y)
-                                - (this->mVector.y * vector.mVector.y));
+Vector::Vector(const Point tail, const Point head) {
+    x = head.getX() - tail.getX();
+    y = head.getY() - tail.getY();
+}
 
-    return crossProductMagnitude;
+Fixed Vector::crossProduct(const Vector &vector) const {
+    Fixed result = (x * vector.y) - (y * vector.x);
+
+    return result;
 }

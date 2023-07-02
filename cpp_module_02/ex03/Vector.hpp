@@ -5,41 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 18:29:34 by minseok2          +#+    #+#             */
-/*   Updated: 2023/06/26 18:29:34 by minseok2         ###   ########.fr       */
+/*   Created: 2023/07/01 16:30:52 by minseok2          +#+    #+#             */
+/*   Updated: 2023/07/01 16:30:52 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include <iostream>
+#include <cmath>
 #include "Point.hpp"
-
-#define SIGN_MASK (1 << 31)
-
-typedef enum sign {
-    POSITIVE,
-    NEGATIVE,
-} Sign;
 
 class Vector {
 private:
-    typedef Point Vector_t;
-
-    Vector_t mVector;
+    Fixed x;
+    Fixed y;
 
 public:
     Vector();
-
-    Vector(const Point tail, const Point head);
-
-    Vector(const Vector &vector);
-
     ~Vector();
-
+    Vector(const Vector &vector);
     Vector &operator=(const Vector &vector);
 
-    Fixed getCrossProductMagnitude(const Vector &vector) const;
+public:
+    Vector(const Point tail, const Point head);
+
+public:
+    Fixed crossProduct(const Vector &vector) const;
 };
 
 #endif
