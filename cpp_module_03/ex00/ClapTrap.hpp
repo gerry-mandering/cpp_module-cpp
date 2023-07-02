@@ -17,12 +17,10 @@
 
 class ClapTrap {
 private:
-    static const unsigned int ATTACK_DAMAGE = 0;
-
-private:
     std::string mName;
     unsigned int mHitPoint;
     unsigned int mEnergyPoint;
+    unsigned int mAttackDamage;
 
 private:
     ClapTrap();

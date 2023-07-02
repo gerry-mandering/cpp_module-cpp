@@ -15,8 +15,8 @@ CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = $(SRCS:.cpp=.o)
 SRCS =  main.cpp \
-		ClapTrap.cpp \ 
-		ScavTrap.cpp \ 
+		ClapTrap.cpp \
+		ScavTrap.cpp \
 
 all: $(NAME)
 $(NAME): $(OBJS)

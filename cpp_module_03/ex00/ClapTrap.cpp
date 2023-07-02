@@ -15,7 +15,7 @@
 ClapTrap::ClapTrap() {}
 
 ClapTrap::~ClapTrap() {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "ClapTrap Destructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &clapTrap) {
@@ -27,17 +27,19 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &clapTrap) {
         mName = clapTrap.mName;
         mHitPoint = clapTrap.mHitPoint;
         mEnergyPoint = clapTrap.mEnergyPoint;
+        mAttackDamage = clapTrap.mAttackDamage;
     }
 
     return *this;
 }
 
 ClapTrap::ClapTrap(const std::string &name) {
-    std::cout << "Constructor called" << std::endl;
+    std::cout << "ClapTrap Constructor called" << std::endl;
 
     mName = name;
     mHitPoint = 10;
     mEnergyPoint = 10;
+    mAttackDamage = 0;
 }
 
 void ClapTrap::attack(const std::string &target) {
@@ -48,7 +50,7 @@ void ClapTrap::attack(const std::string &target) {
 
     std::cout
             << "ClapTrap " << mName << " attacks " << target
-            << ", causing " << ClapTrap::ATTACK_DAMAGE << " points of damage!"
+            << ", causing " << mAttackDamage << " points of damage!"
             << std::endl;
 }
 
