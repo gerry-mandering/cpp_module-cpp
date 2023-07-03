@@ -14,18 +14,16 @@
 
 Zombie::Zombie(void) {}
 
-Zombie::Zombie(const std::string &name) : mName(name) {}
-
 Zombie::~Zombie(void) {
     std::cout << mName << " is now destroyed" << std::endl;
 }
 
-void Zombie::setName(const std::string &name) {
-    mName = name;
-}
-
 const std::string &Zombie::getName() const {
     return mName;
+}
+
+void Zombie::setName(const std::string &name) {
+    mName = name;
 }
 
 void Zombie::announce() {

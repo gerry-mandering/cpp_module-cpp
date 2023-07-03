@@ -16,14 +16,14 @@
 #include <iostream>
 
 class Weapon {
-private:
-    std::string mType;
-
 public:
     Weapon(const std::string &type);
 
     const std::string &getType() const;
     void setType(const std::string &type);
+
+private:
+    std::string mType;
 };
 
 #endif

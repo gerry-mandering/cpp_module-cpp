@@ -16,18 +16,17 @@
 #include <iostream>
 
 class Zombie {
-private:
-    std::string mName;
-
 public:
     Zombie(void);
     ~Zombie(void);
-    Zombie(const std::string &name);
 
     const std::string &getName() const;
     void setName(const std::string &name);
 
     void announce(void);
+
+private:
+    std::string mName;
 };
 
 Zombie *zombieHorde(int N, std::string name);

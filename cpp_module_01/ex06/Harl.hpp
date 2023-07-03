@@ -20,10 +20,6 @@ class Harl {
 public:
     Harl();
 
-    const std::string &getLevel() const;
-
-    void printInstruction() const;
-    void receiveInput();
     void complain(std::string level);
 
 private:
@@ -34,9 +30,7 @@ private:
     void warning(void);
     void error(void);
 
-    typedef void (Harl::*CommentFunction)(void);
-
-    bool getCommentType(const std::string &level, CommentType &commentType) const;
+    typedef void (Harl::*LevelFunction)(void);
 };
 
 #endif

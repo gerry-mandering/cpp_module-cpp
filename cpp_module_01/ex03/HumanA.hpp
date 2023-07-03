@@ -17,14 +17,14 @@
 #include "Weapon.hpp"
 
 class HumanA {
-private:
-    std::string mName;
-    Weapon &mWeapon;
-
 public:
     HumanA(const std::string &name, Weapon &weapon);
 
     void attack(void) const;
+
+private:
+    std::string mName;
+    Weapon &mWeapon;
 };
 
 #endif

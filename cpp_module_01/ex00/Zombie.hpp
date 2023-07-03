@@ -16,19 +16,16 @@
 #include <iostream>
 
 class Zombie {
-private:
-    std::string mName;
-
-    Zombie(void);
-
 public:
     Zombie(const std::string &name);
     ~Zombie(void);
 
-    const std::string &getName() const;
-    void setName(const std::string &name);
-
     void announce(void);
+
+private:
+    std::string mName;
+
+    Zombie(void);
 };
 
 Zombie *newZombie(std::string name);

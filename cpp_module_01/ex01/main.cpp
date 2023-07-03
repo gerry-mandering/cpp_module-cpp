@@ -14,7 +14,7 @@
 
 int main(void) {
 
-    Zombie *zombies = zombieHorde(5, "HelloWorld");
+    Zombie *zombies = zombieHorde(5, "DanglingHead");
 
     for (int i = 0; i < 5; i++) {
         zombies->announce();

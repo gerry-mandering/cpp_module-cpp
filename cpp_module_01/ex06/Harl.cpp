@@ -11,7 +11,67 @@
 /* ************************************************************************** */
 
 #include "Harl.hpp"
-#include <iostream>
+
+Harl::Harl() {}
+
+bool isLevelValid(const std::string &level) {
+    std::string validLevels[4] = {
+            "DEBUG",
+            "INFO",
+            "WARNING",
+            "ERROR",
+    };
+
+    for (int i = 0; i < 4; i++) {
+        if (level == validLevels[i])
+            return true;
+    }
+
+    return false;
+}
+
+Level getCorrespondingEnum(const std::string &level) {
+    std::string levels[4] = {
+            "DEBUG",
+            "INFO",
+            "WARNING",
+            "ERROR",
+    };
+
+    int i;
+    for (i = 0; i < 4; i++) {
+        if (level == levels[i])
+            break;
+    }
+
+    return static_cast<Level>(i);
+}
+
+void Harl::complain(std::string level) {
+    if (!isLevelValid(level)) {
+        std::cout << "Invalid Input" << std::endl;
+        return;
+    }
+
+    LevelFunction levelFunctions[4] = {
+            &Harl::debug,
+            &Harl::info,
+            &Harl::warning,
+            &Harl::error,
+    };
+    Level eLevel = getCorrespondingEnum(level);
+
+    switch (eLevel) {
+        case DEBUG:
+            (this->*levelFunctions[static_cast<int>(DEBUG)])();
+        case INFO:
+            (this->*levelFunctions[static_cast<int>(INFO)])();
+        case WARNING:
+            (this->*levelFunctions[static_cast<int>(WARNING)])();
+        case ERROR:
+            (this->*levelFunctions[static_cast<int>(ERROR)])();
+    }
+}
 
 void Harl::debug(void) {
     std::cout
@@ -43,44 +103,4 @@ void Harl::error(void) {
             << "[ERROR]" << std::endl
             << "This is unacceptable! I want to speak to the manager now." << std::endl
             << std::endl;
-}
-
-Harl::Harl() {
-    this->commentFunctions[DEBUG] = &Harl::debug;
-    this->commentFunctions[INFO] = &Harl::info;
-    this->commentFunctions[WARNING] = &Harl::warning;
-    this->commentFunctions[ERROR] = &Harl::error;
-}
-
-bool Harl::getCommentType(const std::string &level, CommentType &commentType) const {
-    std::string levels[TotalComment] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-
-    for (int i = 0; i < TotalComment; i++) {
-        if (level == levels[i]) {
-            commentType = (CommentType) i;
-            return true;
-        }
-    }
-
-    return false;
-}
-
-void Harl::complain(std::string level) {
-    CommentType commentType;
-
-    if (!getCommentType(level, commentType)) {
-        std::cout << "Invalid Input" << std::endl;
-        return;
-    }
-
-    switch (commentType) {
-        case DEBUG:
-            (this->*commentFunctions[DEBUG])();
-        case INFO:
-            (this->*commentFunctions[INFO])();
-        case WARNING:
-            (this->*commentFunctions[WARNING])();
-        case ERROR:
-            (this->*commentFunctions[ERROR])();
-    }
 }
