@@ -64,6 +64,7 @@ void Harl::complain(std::string level) {
     switch (eLevel) {
         case DEBUG:
             (this->*levelFunctions[static_cast<int>(DEBUG)])();
+            __attribute__((fallthrough));
         case INFO:
             (this->*levelFunctions[static_cast<int>(INFO)])();
         case WARNING:
