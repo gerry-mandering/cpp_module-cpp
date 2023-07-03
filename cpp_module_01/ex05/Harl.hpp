@@ -14,6 +14,7 @@
 #define HARL_H
 
 #include <iostream>
+#include <cstdio>
 #include "HarlEnum.hpp"
 
 class Harl {
