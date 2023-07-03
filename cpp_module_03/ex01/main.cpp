@@ -30,5 +30,7 @@ int main(void) {
     dumbAndDumber.beRepaired(3);
     dumbAndDumber.attack("Innocent Citizens");
 
+    dumbAndDumber.guardGate();
+
     return 0;
 }
