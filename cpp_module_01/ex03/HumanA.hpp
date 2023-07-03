@@ -13,21 +13,16 @@
 #ifndef HUMAN_A_H
 #define HUMAN_A_H
 
-#include "Weapon.hpp"
 #include <iostream>
+#include "Weapon.hpp"
 
 class HumanA {
 private:
-    std::string name;
-    Weapon &weapon;
+    std::string mName;
+    Weapon &mWeapon;
 
 public:
-//    HumanA(const std::string &name, const Weapon &weapon); 왜 const를 빼야 하는가?
     HumanA(const std::string &name, Weapon &weapon);
-
-    void setName(const std::string &name);
-
-    const std::string &getName() const;
 
     void attack(void) const;
 };

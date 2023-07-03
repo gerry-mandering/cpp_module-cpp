@@ -11,19 +11,23 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <iomanip>
 
 int main(void) {
+
     std::string greetings("HI THIS IS BRAIN");
     std::string *stringPTR = &greetings;
     std::string &stringREF = greetings;
 
-    std::cout << "The Memory Address of greetings: " << &greetings << std::endl;
-    std::cout << "The Memory Address held by stringPTR: " << stringPTR << std::endl;
-    std::cout << "The Memory Address held by stringREF: " << &stringREF << std::endl;
+    std::cout
+            << std::setw(39) << std::left << "The Memory Address of greetings : " << &greetings << std::endl
+            << std::setw(39) << std::left << "The Memory Address held by stringPTR : " << stringPTR << std::endl
+            << std::setw(39) << std::left << "The Memory Address held by stringREF : " << &stringREF << std::endl;
 
-    std::cout << "The Value of greetings: " << greetings << std::endl;
-    std::cout << "The Value Pointed by stringPTR: " << *stringPTR << std::endl;
-    std::cout << "The Value Pointed by stringREF: " << stringREF << std::endl;
+    std::cout
+            << std::setw(33) << std::left << "The Value of greetings : " << greetings << std::endl
+            << std::setw(33) << std::left << "The Value Pointed by stringPTR : " << *stringPTR << std::endl
+            << std::setw(33) << std::left << "The Value Pointed by stringREF : " << stringREF << std::endl;
 
     return 0;
 }

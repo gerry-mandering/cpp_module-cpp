@@ -13,35 +13,28 @@
 #ifndef HARL_H
 #define HARL_H
 
-#define TotalComment 4
-
 #include <iostream>
+#include "HarlEnum.hpp"
 
 class Harl {
-private:
-    void debug(void);
-
-    void info(void);
-
-    void warning(void);
-
-    void error(void);
-
-    typedef enum commentType {
-        DEBUG,
-        INFO,
-        WARNING,
-        ERROR,
-    } CommentType;
-
-    typedef void (Harl::*CommentFunction)(void);
-
-    CommentFunction commentFunctions[5];
-
 public:
     Harl();
 
+    const std::string &getLevel() const;
+
+    void printInstruction() const;
+    void receiveInput();
     void complain(std::string level);
+
+private:
+    std::string mLevel;
+
+    void debug(void);
+    void info(void);
+    void warning(void);
+    void error(void);
+
+    typedef void (Harl::*LevelFunction)(void);
 };
 
 #endif

@@ -12,18 +12,8 @@
 
 #include "HumanA.hpp"
 
-HumanA::HumanA(const std::string &name, Weapon &weapon) : weapon(weapon) {
-    this->setName(name);
-}
-
-void HumanA::setName(const std::string &name) {
-    this->name = name;
-}
-
-const std::string &HumanA::getName() const {
-    return this->name;
-}
+HumanA::HumanA(const std::string &name, Weapon &weapon) : mName(name), mWeapon(weapon) {}
 
 void HumanA::attack() const {
-    std::cout << this->getName() << " attacks with their " << this->weapon.getType() << std::endl;
+    std::cout << mName << " attacks with their " << mWeapon.getType() << std::endl;
 }

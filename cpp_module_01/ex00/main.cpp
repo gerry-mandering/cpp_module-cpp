@@ -12,16 +12,12 @@
 
 #include "Zombie.hpp"
 
-// Function Declaration
-Zombie *newZombie(std::string name);
-void randomChump(std::string name);
-
 int main(void) {
-    Zombie *heapZombie = newZombie("heapZombie");
 
+    Zombie *heapZombie = newZombie("HeapZombie");
     heapZombie->announce();
 
-    randomChump("stackZombie");
+    randomChump("StackZombie");
 
     delete heapZombie;
 

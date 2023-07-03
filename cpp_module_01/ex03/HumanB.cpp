@@ -12,28 +12,15 @@
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(void) {}
-
-HumanB::HumanB(const std::string &name) {
-    this->setName(name);
-}
-
-void HumanB::setName(const std::string &name) {
-    this->name = name;
-    this->weapon = nullptr;
-}
+HumanB::HumanB(const std::string &name) : mName(name), mWeapon(0) {}
 
 void HumanB::setWeapon(Weapon &weapon) {
-    this->weapon = &weapon;
-}
-
-const std::string &HumanB::getName() const {
-    return this->name;
+    mWeapon = &weapon;
 }
 
 void HumanB::attack() const {
-    if (this->weapon)
-        std::cout << this->getName() << " attacks with their " << this->weapon->getType() << std::endl;
+    if (mWeapon)
+        std::cout << mName << " attacks with their " << mWeapon->getType() << std::endl;
     else
-        std::cout << this->getName() << " attacks with their bare hands" << std::endl;
+        std::cout << mName << " attacks with their bare hands" << std::endl;
 }

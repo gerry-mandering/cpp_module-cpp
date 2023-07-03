@@ -23,14 +23,15 @@ private:
 
 public:
     Zombie(const std::string &name);
-
     ~Zombie(void);
 
-    void setName(const std::string &name);
-
     const std::string &getName() const;
+    void setName(const std::string &name);
 
     void announce(void);
 };
+
+Zombie *newZombie(std::string name);
+void randomChump(std::string name);
 
 #endif

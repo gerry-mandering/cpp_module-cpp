@@ -14,22 +14,20 @@
 
 Zombie::Zombie(void) {}
 
-Zombie::Zombie(const std::string &name) {
-    this->setName(name);
-}
+Zombie::Zombie(const std::string &name) : mName(name) {}
 
 Zombie::~Zombie(void) {
-    std::cout << this->getName() << " is now destroyed" << std::endl;
+    std::cout << mName << " is now destroyed" << std::endl;
 }
 
 void Zombie::setName(const std::string &name) {
-    this->mName = name;
+    mName = name;
 }
 
 const std::string &Zombie::getName() const {
-    return this->mName;
+    return mName;
 }
 
 void Zombie::announce() {
-    std::cout << this->getName() << ": BraiiiiiiinnnzzzZ..." << std::endl;
+    std::cout << mName << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

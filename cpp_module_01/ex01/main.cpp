@@ -12,13 +12,13 @@
 
 #include "Zombie.hpp"
 
-Zombie *zombieHorde(int N, std::string name);
-
 int main(void) {
+
     Zombie *zombies = zombieHorde(5, "HelloWorld");
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 5; i++) {
         zombies->announce();
+    }
 
     delete[] zombies;
 
