@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Point.cpp                                          :+:      :+:    :+:   */
+/*   SignEnum.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,29 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#ifndef SIGN_ENUM_H
+#define SIGN_ENUM_H
 
-Point::Point() : x(0), y(0) {}
+enum Sign {
+    POSITIVE,
+    NEGATIVE,
+};
 
-Point::~Point() {}
-
-Point::Point(const Point &point) : x(point.getX()), y(point.getY()) {}
-
-Point &Point::operator=(const Point &point) {
-    if (this != &point) {
-        this->~Point();
-        new(this) Point(point);
-    }
-
-    return *this;
-}
-
-Point::Point(const float x, const float y) : x(x), y(y) {}
-
-const Fixed &Point::getX() const {
-    return x;
-}
-
-const Fixed &Point::getY() const {
-    return y;
-}
+#endif

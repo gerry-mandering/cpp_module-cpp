@@ -13,15 +13,9 @@
 #ifndef POINT_H
 #define POINT_H
 
-#include <iostream>
-#include <cmath>
 #include "Fixed.hpp"
 
 class Point {
-private:
-    const Fixed x;
-    const Fixed y;
-
 public:
     Point();
     ~Point();
@@ -34,6 +28,11 @@ public:
 public:
     const Fixed &getX() const;
     const Fixed &getY() const;
+
+private:
+    const Fixed x;
+    const Fixed y;
+
 };
 
 #endif

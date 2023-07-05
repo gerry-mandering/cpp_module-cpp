@@ -17,10 +17,6 @@
 #include <cmath>
 
 class Fixed {
-private:
-    int mRaw;
-    static const int FRACTIONAL_BIT_COUNT = 8;
-
 public:
     Fixed();
     ~Fixed();
@@ -48,7 +44,6 @@ public:
     Fixed &operator--();
     Fixed operator--(int);
 
-//    friend std::ostream &operator<<(std::ostream &output, const Fixed &fixed); ㅇㅣ런 식의 동작은 됐지만 왜 되는지
 public:
     int getRawBits(void) const;
     void setRawBits(int const raw);
@@ -60,6 +55,11 @@ public:
     static const Fixed &min(const Fixed &fixedA, const Fixed &fixedB);
     static Fixed &max(Fixed &fixedA, Fixed &fixedB);
     static const Fixed &max(const Fixed &fixedA, const Fixed &fixedB);
+
+private:
+    static const int FRACTIONAL_BIT_COUNT = 8;
+
+    int mRaw;
 };
 
 std::ostream &operator<<(std::ostream &output, const Fixed &fixed);

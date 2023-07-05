@@ -13,24 +13,16 @@
 #include "Fixed.hpp"
 
 Fixed::Fixed() {
-//    std::cout << "Default constructor called" << std::endl;
-
     mRaw = 0;
 }
 
-Fixed::~Fixed() {
-//    std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed() {}
 
 Fixed::Fixed(const Fixed &fixed) {
-//    std::cout << "Copy constructor called" << std::endl;
-
     *this = fixed;
 }
 
 Fixed &Fixed::operator=(const Fixed &fixed) {
-//    std::cout << "Copy assignment operator called" << std::endl;
-
     if (this != &fixed)
         mRaw = fixed.mRaw;
 
@@ -38,14 +30,10 @@ Fixed &Fixed::operator=(const Fixed &fixed) {
 }
 
 Fixed::Fixed(const int number) {
-//    std::cout << "Int constructor called" << std::endl;
-
     mRaw = number << Fixed::FRACTIONAL_BIT_COUNT;
 }
 
 Fixed::Fixed(const float number) {
-//    std::cout << "Float constructor called" << std::endl;
-
     mRaw = roundf(number * (1 << Fixed::FRACTIONAL_BIT_COUNT));
 }
 
@@ -146,7 +134,7 @@ void Fixed::setRawBits(int const raw) {
 }
 
 float Fixed::toFloat(void) const {
-    return (float) mRaw / (1 << Fixed::FRACTIONAL_BIT_COUNT);
+    return static_cast<float>(mRaw) / (1 << Fixed::FRACTIONAL_BIT_COUNT);
 }
 
 int Fixed::toInt(void) const {
@@ -169,7 +157,6 @@ const Fixed &Fixed::max(const Fixed &fixedA, const Fixed &fixedB) {
     return fixedA > fixedB ? fixedA : fixedB;
 }
 
-//연산자 오버로딩 왜 Fixed:: 없는지
 std::ostream &operator<<(std::ostream &output, const Fixed &fixed) {
     output << fixed.toFloat();
 

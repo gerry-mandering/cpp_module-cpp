@@ -12,23 +12,15 @@
 
 #include "Vector.hpp"
 
-Vector::Vector() {
-//    std::cout << "Default constructor called" << std::endl;
-}
+Vector::Vector() {}
 
-Vector::~Vector() {
-//    std::cout << "Destructor called" << std::endl;
-}
+Vector::~Vector() {}
 
 Vector::Vector(const Vector &vector) {
-//    std::cout << "Copy constructor called" << std::endl;
-
     *this = vector;
 }
 
 Vector &Vector::operator=(const Vector &vector) {
-//    std::cout << "Copy assignment operator called" << std::endl;
-
     if (this != &vector) {
         this->~Vector();
         new(this)Vector(vector);

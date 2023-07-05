@@ -15,15 +15,9 @@
 
 #include <iostream>
 #include <cmath>
+#include "SignEnum.h"
 
 class Fixed {
-private:
-    static const int FRACTIONAL_BIT_COUNT = 8;
-    static const int SIGN_MASK = (1 << 31);
-
-private:
-    int mRaw;
-
 public:
     Fixed();
     ~Fixed();
@@ -51,7 +45,6 @@ public:
     Fixed &operator--();
     Fixed operator--(int);
 
-//    friend std::ostream &operator<<(std::ostream &output, const Fixed &fixed); ㅇㅣ런 식의 동작은 됐지만 왜 되는지
 public:
     int getRawBits(void) const;
     void setRawBits(int const raw);
@@ -65,12 +58,13 @@ public:
     static const Fixed &max(const Fixed &fixedA, const Fixed &fixedB);
 
 public:
-    typedef enum sign {
-        POSITIVE,
-        NEGATIVE,
-    } Sign;
-
     Sign sign() const;
+
+private:
+    static const int FRACTIONAL_BIT_COUNT = 8;
+    static const int SIGN_MASK = (1 << 31);
+
+    int mRaw;
 };
 
 std::ostream &operator<<(std::ostream &output, const Fixed &fixed);

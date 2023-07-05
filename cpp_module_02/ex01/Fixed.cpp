@@ -40,7 +40,7 @@ Fixed &Fixed::operator=(const Fixed &fixed) {
 Fixed::Fixed(const int number) {
     std::cout << "Int constructor called" << std::endl;
 
-    mRaw = roundf(number * (1 << Fixed::FRACTIONAL_BIT_COUNT));
+    mRaw = number << Fixed::FRACTIONAL_BIT_COUNT;
 }
 
 Fixed::Fixed(const float number) {
@@ -58,14 +58,13 @@ void Fixed::setRawBits(int const raw) {
 }
 
 float Fixed::toFloat(void) const {
-    return mRaw / (float) (1 << Fixed::FRACTIONAL_BIT_COUNT);
+    return static_cast<float>(mRaw) / (1 << Fixed::FRACTIONAL_BIT_COUNT);
 }
 
 int Fixed::toInt(void) const {
-    return mRaw / (1 << Fixed::FRACTIONAL_BIT_COUNT);
+    return mRaw >> Fixed::FRACTIONAL_BIT_COUNT;
 }
 
-//연산자 오버로딩 왜 Fixed:: 없는지
 std::ostream &operator<<(std::ostream &output, const Fixed &fixed) {
     output << fixed.toFloat();
 

@@ -55,6 +55,7 @@ void ScavTrap::attack(const std::string &target) {
             << std::endl;
 }
 
+/////////////////FIXXXXXXXXXXXXXXXXXX!!!!!
 void ScavTrap::takeDamage(unsigned int amount) {
     if (getHitPoint() == 0 || getEnergyPoint() == 0) {
         std::cout << "ScavTrap " << getName() << " cannot take damage" << std::endl;

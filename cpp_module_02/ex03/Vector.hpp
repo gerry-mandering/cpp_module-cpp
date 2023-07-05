@@ -13,15 +13,9 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-#include <iostream>
-#include <cmath>
 #include "Point.hpp"
 
 class Vector {
-private:
-    Fixed x;
-    Fixed y;
-
 public:
     Vector();
     ~Vector();
@@ -33,6 +27,12 @@ public:
 
 public:
     Fixed crossProduct(const Vector &vector) const;
+
+private:
+    Fixed x;
+    Fixed y;
 };
+
+bool bsp(const Point a, const Point b, const Point c, const Point point);
 
 #endif

@@ -14,12 +14,9 @@
 #define FIXED_H
 
 #include <iostream>
+#include <cmath>
 
 class Fixed {
-private:
-    int mRaw;
-    static const int FRACTIONAL_BIT_COUNT = 8;
-
 public:
     Fixed();
     ~Fixed();
@@ -29,13 +26,16 @@ public:
     Fixed(const int number);
     Fixed(const float number);
 
-//    friend std::ostream &operator<<(std::ostream &output, const Fixed &fixed); ㅇㅣ런 식의 동작은 됐지만 왜 되는지
-
     int getRawBits(void) const;
     void setRawBits(int const raw);
 
     float toFloat(void) const;
     int toInt(void) const;
+
+private:
+    static const int FRACTIONAL_BIT_COUNT = 8;
+
+    int mRaw;
 };
 
 std::ostream &operator<<(std::ostream &output, const Fixed &fixed);
