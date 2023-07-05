@@ -17,7 +17,6 @@
 
 class Vector {
 public:
-    Vector();
     ~Vector();
     Vector(const Vector &vector);
     Vector &operator=(const Vector &vector);
@@ -31,6 +30,9 @@ public:
 private:
     Fixed x;
     Fixed y;
+
+private:
+    Vector();
 };
 
 bool bsp(const Point a, const Point b, const Point c, const Point point);

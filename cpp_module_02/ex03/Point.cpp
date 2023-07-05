@@ -16,7 +16,7 @@ Point::Point() : x(0), y(0) {}
 
 Point::~Point() {}
 
-Point::Point(const Point &point) : x(point.getX()), y(point.getY()) {}
+Point::Point(const Point &point) : x(point.x), y(point.y) {}
 
 Point &Point::operator=(const Point &point) {
     if (this != &point) {
