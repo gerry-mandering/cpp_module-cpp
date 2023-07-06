@@ -16,10 +16,8 @@
 #include "ClapTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap {
-protected:
-    ScavTrap();
-
 public:
+    ScavTrap();
     ~ScavTrap();
     ScavTrap(const ScavTrap &scavTrap);
     ScavTrap &operator=(const ScavTrap &scavTrap);
@@ -29,11 +27,12 @@ public:
 
 public:
     void attack(const std::string &target);
-    void takeDamage(unsigned int amount);
-    void beRepaired(unsigned int amount);
 
 public:
     void guardGate();
+
+private:
+    void printErrorMessage(eErrorMessage errorMessage) const;
 };
 
 #endif

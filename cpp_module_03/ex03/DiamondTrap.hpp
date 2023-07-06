@@ -10,20 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DIAMONDTRAP_H
-#define DIAMONDTRAP_H
+#ifndef DIAMOND_TRAP_H
+#define DIAMOND_TRAP_H
 
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
 class DiamondTrap : public ScavTrap, public FragTrap {
-private:
-    std::string mName;
-
-private:
-    DiamondTrap();
-
 public:
+    DiamondTrap();
     ~DiamondTrap();
     DiamondTrap(const DiamondTrap &diamondTrap);
     DiamondTrap &operator=(const DiamondTrap &diamondTrap);
@@ -33,11 +28,12 @@ public:
 
 public:
     void attack(const std::string &target);
-    void takeDamage(unsigned int amount);
-    void beRepaired(unsigned int amount);
 
 public:
     void whoAmI();
+
+private:
+    std::string mName;
 };
 
 #endif
