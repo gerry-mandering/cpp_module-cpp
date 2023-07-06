@@ -30,6 +30,8 @@ int main(void) {
     dumbAndDumber.beRepaired(3);
     dumbAndDumber.attack("Innocent Citizens");
 
+    dumbAndDumber.guardGate();
+    dumbAndDumber.highFiveGuys();
     dumbAndDumber.whoAmI();
 
     return 0;

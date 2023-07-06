@@ -12,7 +12,9 @@
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() {}
+ScavTrap::ScavTrap() {
+    std::cout << "ScavTrap Constructor called" << std::endl;
+}
 
 ScavTrap::~ScavTrap() {
     std::cout << "ScavTrap Destructor called" << std::endl;

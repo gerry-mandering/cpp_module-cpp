@@ -12,7 +12,9 @@
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap() {}
+FragTrap::FragTrap() {
+    std::cout << "FragTrap Constructor called" << std::endl;
+}
 
 FragTrap::~FragTrap() {
     std::cout << "FragTrap Destructor called" << std::endl;

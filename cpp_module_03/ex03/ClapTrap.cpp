@@ -12,7 +12,9 @@
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() {}
+ClapTrap::ClapTrap() {
+    std::cout << "ClapTrap Constructor called" << std::endl;
+}
 
 ClapTrap::~ClapTrap() {
     std::cout << "ClapTrap Destructor called" << std::endl;
