@@ -33,60 +33,36 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &scavTrap) {
     return *this;
 }
 
-ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name) {
+ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name, 100, 50, 20){
     std::cout << "ScavTrap Constructor called" << std::endl;
-
-    setHitPoint(100);
-    setEnergyPoint(50);
-    setAttackDamage(20);
 }
 
 void ScavTrap::attack(const std::string &target) {
     if (getHitPoint() == 0 || getEnergyPoint() == 0) {
-        std::cout << "ScavTrap " << getName() << " cannot attack" << std::endl;
+        printErrorMessage(ATTACK_FAIL);
         return;
     }
 
-    setEnergyPoint(getEnergyPoint() - 1);
+    useEnergy();
 
-    std::cout
-            << "ScavTrap " << getName() << " attacks " << target
-            << ", causing " << getAttackDamage() << " points of damage!"
-            << std::endl;
-}
-
-void ScavTrap::takeDamage(unsigned int amount) {
-    if (getHitPoint() == 0 || getEnergyPoint() == 0) {
-        std::cout << "ScavTrap " << getName() << " cannot take damage" << std::endl;
-        return;
-    }
-
-    if (amount > getHitPoint())
-        setHitPoint(0);
-    else
-        setHitPoint(getHitPoint() - amount);
-
-    std::cout
-            << "ScavTrap " << getName() << " takes " << amount << " damage, "
-            << getName() << "'s remaining Hit Point is " << getHitPoint()
-            << std::endl;
-}
-
-void ScavTrap::beRepaired(unsigned int amount) {
-    if (getHitPoint() == 0 || getEnergyPoint() == 0) {
-        std::cout << "ScavTrap " << getName() << " cannot be repaired" << std::endl;
-        return;
-    }
-
-    setHitPoint(getHitPoint() + amount);
-    setEnergyPoint(getEnergyPoint() - 1);
-
-    std::cout
-            << "ScavTrap " << getName() << " repaired Hit Point worth about " << amount
-            << ", " << getName() << "'s remaining Hit Point is " << getHitPoint()
-            << std::endl;
+    std::cout << "ScavTrap " << getName() << " attacks " << target
+              << ", causing " << getAttackDamage() << " points of damage!" << std::endl;
 }
 
 void ScavTrap::guardGate() {
     std::cout << "ScavTrap " << getName() << " is now in Gate Keeper Mode!" << std::endl;
+}
+
+void ScavTrap::printErrorMessage(eErrorMessage errorMessage) const {
+    switch (errorMessage) {
+        case ATTACK_FAIL:
+            std::cout << "ScavTrap " << getName() << " cannot attack" << std::endl;
+            break;
+        case TAKE_DAMAGE_FAIL:
+            std::cout << "ScavTrap " << getName() << " cannot take damage" << std::endl;
+            break;
+        case BE_REPAIRED_FAIL:
+            std::cout << "ScavTrap " << getName() << " cannot be repaired" << std::endl;
+            break;
+    }
 }

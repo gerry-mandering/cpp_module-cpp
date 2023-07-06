@@ -14,16 +14,23 @@
 #define CLAPTRAP_H
 
 #include <iostream>
+#include "MessageEnum.hpp"
 
 class ClapTrap {
-private:
-    std::string mName;
-    unsigned int mHitPoint;
-    unsigned int mEnergyPoint;
-    unsigned int mAttackDamage;
-
-protected:
+public:
     ClapTrap();
+    ~ClapTrap();
+    ClapTrap(const ClapTrap &clapTrap);
+    ClapTrap &operator=(const ClapTrap &clapTrap);
+
+public:
+    ClapTrap(const std::string &name);
+    ClapTrap(const std::string &name, const unsigned int hitPoint, const unsigned int energyPoint, const unsigned int attackDamage);
+
+public:
+    void attack(const std::string &target);
+    void takeDamage(unsigned int amount);
+    void beRepaired(unsigned int amount);
 
 protected:
     const std::string &getName() const;
@@ -36,18 +43,20 @@ protected:
     void setEnergyPoint(const unsigned int &energyPoint);
     void setAttackDamage(const unsigned int &attackDamage);
 
-public:
-    ~ClapTrap();
-    ClapTrap(const ClapTrap &clapTrap);
-    ClapTrap &operator=(const ClapTrap &clapTrap);
+protected:
+    void useEnergy();
 
-public:
-    ClapTrap(const std::string &name);
+private:
+    std::string mName;
+    unsigned int mHitPoint;
+    unsigned int mEnergyPoint;
+    unsigned int mAttackDamage;
 
-public:
-    void attack(const std::string &target);
-    void takeDamage(unsigned int amount);
-    void beRepaired(unsigned int amount);
+private:
+    unsigned int mMaxHitPoint;
+
+private:
+    void printErrorMessage(eErrorMessage errorMessage) const;
 };
 
 #endif

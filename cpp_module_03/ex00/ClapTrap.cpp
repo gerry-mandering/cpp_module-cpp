@@ -24,41 +24,36 @@ ClapTrap::ClapTrap(const ClapTrap &clapTrap) {
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &clapTrap) {
     if (this != &clapTrap) {
-        mName = clapTrap.mName;
-        mHitPoint = clapTrap.mHitPoint;
-        mEnergyPoint = clapTrap.mEnergyPoint;
-        mAttackDamage = clapTrap.mAttackDamage;
+        mName = clapTrap.getName();
+        mHitPoint = clapTrap.getHitPoint();
+        mEnergyPoint = clapTrap.getEnergyPoint();
+        mAttackDamage = clapTrap.getAttackDamage();
     }
 
     return *this;
 }
 
-ClapTrap::ClapTrap(const std::string &name) {
+ClapTrap::ClapTrap(const std::string &name) : mName(name), mHitPoint(10), mEnergyPoint(10), mAttackDamage(0) {
     std::cout << "ClapTrap Constructor called" << std::endl;
 
-    mName = name;
-    mHitPoint = 10;
-    mEnergyPoint = 10;
-    mAttackDamage = 0;
+    mMaxHitPoint = mHitPoint;
 }
 
 void ClapTrap::attack(const std::string &target) {
     if (mHitPoint == 0 || mEnergyPoint == 0) {
-        std::cout << "ClapTrap " << mName << " cannot attack" << std::endl;
+        printErrorMessage(ATTACK_FAIL);
         return;
     }
 
-    --mEnergyPoint;
+    useEnergy();
 
-    std::cout
-            << "ClapTrap " << mName << " attacks " << target
-            << ", causing " << mAttackDamage << " points of damage!"
-            << std::endl;
+    std::cout << "ClapTrap " << mName << " attacks " << target
+              << ", causing " << mAttackDamage << " points of damage!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
     if (mHitPoint == 0 || mEnergyPoint == 0) {
-        std::cout << "ClapTrap " << mName << " cannot take damage" << std::endl;
+        printErrorMessage(TAKE_DAMAGE_FAIL);
         return;
     }
 
@@ -67,23 +62,55 @@ void ClapTrap::takeDamage(unsigned int amount) {
     else
         mHitPoint -= amount;
 
-    std::cout
-            << "ClapTrap " << mName << " takes " << amount << " damage, "
-            << mName << "'s remaining Hit Point is " << mHitPoint
-            << std::endl;
+    std::cout << "ClapTrap " << mName << " takes " << amount << " damage, "
+              << mName << "'s remaining Hit Point is " << mHitPoint << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
     if (mHitPoint == 0 || mEnergyPoint == 0) {
-        std::cout << "ClapTrap " << mName << " cannot be repaired" << std::endl;
+        printErrorMessage(BE_REPAIRED_FAIL);
         return;
     }
 
     mHitPoint += amount;
-    --mEnergyPoint;
+    if (mHitPoint > mMaxHitPoint)
+        mHitPoint = mMaxHitPoint;
+    useEnergy();
 
-    std::cout
-            << "ClapTrap " << mName << " repaired Hit Point worth about " << amount
-            << ", " << mName << "'s remaining Hit Point is " << mHitPoint
-            << std::endl;
+    std::cout << "ClapTrap " << mName << " repaired Hit Point worth about " << amount
+              << mName << "'s remaining Hit Point is " << mHitPoint << std::endl;
+}
+
+const std::string &ClapTrap::getName() const { return mName; }
+
+const unsigned int &ClapTrap::getHitPoint() const { return mHitPoint; }
+
+const unsigned int &ClapTrap::getEnergyPoint() const { return mEnergyPoint; }
+
+const unsigned int &ClapTrap::getAttackDamage() const { return mAttackDamage; }
+
+void ClapTrap::setName(const std::string &name) { mName = name; }
+
+void ClapTrap::setHitPoint(const unsigned int &hitPoint) { mHitPoint = hitPoint; }
+
+void ClapTrap::setEnergyPoint(const unsigned int &energyPoint) { mEnergyPoint = energyPoint; }
+
+void ClapTrap::setAttackDamage(const unsigned int &attackDamage) { mAttackDamage = attackDamage; }
+
+void ClapTrap::useEnergy() {
+    --mEnergyPoint;
+}
+
+void ClapTrap::printErrorMessage(eErrorMessage errorMessage) const {
+    switch (errorMessage) {
+        case ATTACK_FAIL:
+            std::cout << "ClapTrap " << mName << " cannot attack" << std::endl;
+            break;
+        case TAKE_DAMAGE_FAIL:
+            std::cout << "ClapTrap " << mName << " cannot take damage" << std::endl;
+            break;
+        case BE_REPAIRED_FAIL:
+            std::cout << "ClapTrap " << mName << " cannot be repaired" << std::endl;
+            break;
+    }
 }
