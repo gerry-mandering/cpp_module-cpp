@@ -37,9 +37,9 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &clapTrap) {
 
 ClapTrap::ClapTrap(const std::string &name) :
         mName(name),
-        mHitPoint(10),
-        mEnergyPoint(10),
-        mAttackDamage(0) {
+        mHitPoint(ClapTrap::DEFAULT_HIT_POINT),
+        mEnergyPoint(ClapTrap::DEFAULT_ENERGY_POINT),
+        mAttackDamage(ClapTrap::DEFAULT_ATTACK_DAMAGE) {
     std::cout << "ClapTrap Constructor called" << std::endl;
 
     mMaxHitPoint = mHitPoint;

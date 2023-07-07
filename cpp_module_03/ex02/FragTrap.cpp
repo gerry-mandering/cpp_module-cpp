@@ -35,7 +35,8 @@ FragTrap &FragTrap::operator=(const FragTrap &fragTrap) {
     return *this;
 }
 
-FragTrap::FragTrap(const std::string &name) : ClapTrap(name, 100, 100, 30) {
+FragTrap::FragTrap(const std::string &name) :
+        ClapTrap(name, FragTrap::DEFAULT_HIT_POINT, FragTrap::DEFAULT_ENERGY_POINT, FragTrap::DEFAULT_ATTACK_DAMAGE) {
     std::cout << "FragTrap Constructor called" << std::endl;
 }
 

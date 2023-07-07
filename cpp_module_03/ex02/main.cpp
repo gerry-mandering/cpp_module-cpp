@@ -17,6 +17,7 @@ int main(void) {
     FragTrap dumbAndDumber("DumbAndDumber");
 
     dumbAndDumber.highFiveGuys();
+
     dumbAndDumber.attack("Firmly Closed Door");
     dumbAndDumber.takeDamage(1);
 

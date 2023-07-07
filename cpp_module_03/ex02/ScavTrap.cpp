@@ -35,7 +35,8 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &scavTrap) {
     return *this;
 }
 
-ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name, 100, 50, 20){
+ScavTrap::ScavTrap(const std::string &name) :
+    ClapTrap(name, ScavTrap::DEFAULT_HIT_POINT, ScavTrap::DEFAULT_ENERGY_POINT, ScavTrap::DEFAULT_ATTACK_DAMAGE) {
     std::cout << "ScavTrap Constructor called" << std::endl;
 }
 

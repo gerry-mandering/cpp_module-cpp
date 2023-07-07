@@ -45,17 +45,23 @@ protected:
     void setEnergyPoint(const unsigned int &energyPoint);
     void setAttackDamage(const unsigned int &attackDamage);
 
+private:
+    static const unsigned int DEFAULT_HIT_POINT = 10;
+    static const unsigned int DEFAULT_ENERGY_POINT = 10;
+    static const unsigned int DEFAULT_ATTACK_DAMAGE = 0;
+
+    // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX>?
 protected:
     bool canOperate() const;
     void useEnergy();
 
-private:
+protected:
     std::string mName;
     unsigned int mHitPoint;
     unsigned int mEnergyPoint;
     unsigned int mAttackDamage;
 
-private:
+protected:
     unsigned int mMaxHitPoint;
 
 private:

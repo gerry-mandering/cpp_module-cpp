@@ -46,6 +46,11 @@ protected:
     void useEnergy();
 
 private:
+    static const unsigned int DEFAULT_HIT_POINT = 10;
+    static const unsigned int DEFAULT_ENERGY_POINT = 10;
+    static const unsigned int DEFAULT_ATTACK_DAMAGE = 0;
+
+private:
     std::string mName;
     unsigned int mHitPoint;
     unsigned int mEnergyPoint;
