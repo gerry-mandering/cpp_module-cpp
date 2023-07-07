@@ -17,7 +17,6 @@
 
 class ScavTrap : public ClapTrap {
 public:
-    ScavTrap();
     ~ScavTrap();
     ScavTrap(const ScavTrap &scavTrap);
     ScavTrap &operator=(const ScavTrap &scavTrap);
@@ -30,6 +29,9 @@ public:
 
 public:
     void guardGate();
+
+private:
+    ScavTrap();
 
 private:
     void printErrorMessage(eErrorMessage errorMessage) const;

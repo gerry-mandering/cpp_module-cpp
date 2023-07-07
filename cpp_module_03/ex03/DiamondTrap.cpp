@@ -12,7 +12,9 @@
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() {}
+DiamondTrap::DiamondTrap() {
+    std::cout << "DiamondTrap Constructor called" << std::endl;
+}
 
 DiamondTrap::~DiamondTrap() {
     std::cout << "DiamondTrap Destructor called" << std::endl;
@@ -24,17 +26,20 @@ DiamondTrap::DiamondTrap(const DiamondTrap &diamondTrap) {
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &diamondTrap) {
     if (this != &diamondTrap) {
-        mName = diamondTrap.getName();
-        mHitPoint = diamondTrap.getHitPoint();
-        mEnergyPoint = diamondTrap.getEnergyPoint();
-        mAttackDamage = diamondTrap.getAttackDamage();
+        setName(diamondTrap.getName());
+        setHitPoint(diamondTrap.getHitPoint());
+        setEnergyPoint(diamondTrap.getEnergyPoint());
+        setAttackDamage(diamondTrap.getAttackDamage());
     }
 
     return *this;
 }
 
-DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name + "_clap_name", 100, 50, 30), ScavTrap(), FragTrap(),
-                                                    mName(name) {
+DiamondTrap::DiamondTrap(const std::string &name) :
+        ClapTrap(name + "_clap_name", 100, 50, 30),
+        ScavTrap(),
+        FragTrap(),
+        mName(name) {
     std::cout << "DiamondTrap Constructor called" << std::endl;
 }
 
@@ -43,5 +48,10 @@ void DiamondTrap::attack(const std::string &target) {
 }
 
 void DiamondTrap::whoAmI() {
-    std::cout << "I am " << mName << " and Also " << ClapTrap::mName << "!" << std::endl;
+    if (!canOperate()) {
+        std::cout << "DiamondTrap " << getName() << " cannot introduce itself" << std::endl;
+        return;
+    }
+
+    std::cout << "I am " << mName << " and Also " << getName() << "!" << std::endl;
 }

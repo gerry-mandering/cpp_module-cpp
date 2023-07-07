@@ -16,6 +16,10 @@ int main(void) {
 
     DiamondTrap dumbAndDumber("DumbAndDumber");
 
+    dumbAndDumber.guardGate();
+    dumbAndDumber.highFiveGuys();
+    dumbAndDumber.whoAmI();
+
     dumbAndDumber.attack("Firmly Closed Door");
     dumbAndDumber.takeDamage(1);
 
@@ -25,7 +29,7 @@ int main(void) {
     dumbAndDumber.beRepaired(3);
 
     dumbAndDumber.attack("Physics Professor who gave him a C grade");
-    dumbAndDumber.takeDamage(6);
+    dumbAndDumber.takeDamage(95);
 
     dumbAndDumber.beRepaired(3);
     dumbAndDumber.attack("Innocent Citizens");

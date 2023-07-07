@@ -18,7 +18,6 @@
 
 class ClapTrap {
 public:
-    ClapTrap();
     ~ClapTrap();
     ClapTrap(const ClapTrap &clapTrap);
     ClapTrap &operator=(const ClapTrap &clapTrap);
@@ -33,6 +32,9 @@ public:
     void beRepaired(unsigned int amount);
 
 protected:
+    ClapTrap();
+
+protected:
     const std::string &getName() const;
     const unsigned int &getHitPoint() const;
     const unsigned int &getEnergyPoint() const;
@@ -44,9 +46,10 @@ protected:
     void setAttackDamage(const unsigned int &attackDamage);
 
 protected:
+    bool canOperate() const;
     void useEnergy();
 
-protected:
+private:
     std::string mName;
     unsigned int mHitPoint;
     unsigned int mEnergyPoint;

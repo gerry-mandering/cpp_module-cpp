@@ -40,5 +40,10 @@ FragTrap::FragTrap(const std::string &name) : ClapTrap(name, 100, 100, 30) {
 }
 
 void FragTrap::highFiveGuys() {
+    if (!canOperate()) {
+        std::cout << "FragTrap " << getName() << " cannot High Five" << std::endl;
+        return;
+    }
+
     std::cout << "Gather Up! Let's High Five Guys!" << std::endl;
 }

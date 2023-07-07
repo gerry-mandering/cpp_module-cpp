@@ -18,7 +18,6 @@
 
 class ClapTrap {
 public:
-    ClapTrap();
     ~ClapTrap();
     ClapTrap(const ClapTrap &clapTrap);
     ClapTrap &operator=(const ClapTrap &clapTrap);
@@ -43,6 +42,7 @@ protected:
     void setAttackDamage(const unsigned int &attackDamage);
 
 protected:
+    bool canOperate() const;
     void useEnergy();
 
 private:
@@ -53,6 +53,9 @@ private:
 
 private:
     unsigned int mMaxHitPoint;
+
+private:
+    ClapTrap();
 
 private:
     void printErrorMessage(eErrorMessage errorMessage) const;

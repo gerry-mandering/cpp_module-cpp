@@ -12,7 +12,9 @@
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() {}
+ClapTrap::ClapTrap() {
+    std::cout << "ClapTrap Constructor called" << std::endl;
+}
 
 ClapTrap::~ClapTrap() {
     std::cout << "ClapTrap Destructor called" << std::endl;
@@ -33,14 +35,18 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &clapTrap) {
     return *this;
 }
 
-ClapTrap::ClapTrap(const std::string &name) : mName(name), mHitPoint(10), mEnergyPoint(10), mAttackDamage(0) {
+ClapTrap::ClapTrap(const std::string &name) :
+        mName(name),
+        mHitPoint(10),
+        mEnergyPoint(10),
+        mAttackDamage(0) {
     std::cout << "ClapTrap Constructor called" << std::endl;
 
     mMaxHitPoint = mHitPoint;
 }
 
 void ClapTrap::attack(const std::string &target) {
-    if (mHitPoint == 0 || mEnergyPoint == 0) {
+    if (!canOperate()) {
         printErrorMessage(ATTACK_FAIL);
         return;
     }
@@ -52,7 +58,7 @@ void ClapTrap::attack(const std::string &target) {
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-    if (mHitPoint == 0 || mEnergyPoint == 0) {
+    if (!canOperate()) {
         printErrorMessage(TAKE_DAMAGE_FAIL);
         return;
     }
@@ -67,17 +73,17 @@ void ClapTrap::takeDamage(unsigned int amount) {
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-    if (mHitPoint == 0 || mEnergyPoint == 0) {
+    if (!canOperate()) {
         printErrorMessage(BE_REPAIRED_FAIL);
         return;
     }
 
+    if (mHitPoint + amount > mMaxHitPoint)
+        amount = mMaxHitPoint - mHitPoint;
     mHitPoint += amount;
-    if (mHitPoint > mMaxHitPoint)
-        mHitPoint = mMaxHitPoint;
     useEnergy();
 
-    std::cout << "ClapTrap " << mName << " repaired Hit Point worth about " << amount
+    std::cout << "ClapTrap " << mName << " repaired Hit Point worth about " << amount << ", "
               << mName << "'s remaining Hit Point is " << mHitPoint << std::endl;
 }
 
@@ -96,6 +102,12 @@ void ClapTrap::setHitPoint(const unsigned int &hitPoint) { mHitPoint = hitPoint;
 void ClapTrap::setEnergyPoint(const unsigned int &energyPoint) { mEnergyPoint = energyPoint; }
 
 void ClapTrap::setAttackDamage(const unsigned int &attackDamage) { mAttackDamage = attackDamage; }
+
+bool ClapTrap::canOperate() const {
+    if (mHitPoint == 0 || mEnergyPoint == 0)
+        return false;
+    return true;
+}
 
 void ClapTrap::useEnergy() {
     --mEnergyPoint;

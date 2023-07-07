@@ -40,8 +40,8 @@ ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name, 100, 50, 20){
 }
 
 void ScavTrap::attack(const std::string &target) {
-    if (getHitPoint() == 0 || getEnergyPoint() == 0) {
-        printErrorMessage(ATTACK_FAIL);
+    if (!canOperate()) {
+        std::cout << "ScavTrap " << getName() << " cannot attack" << std::endl;
         return;
     }
 
@@ -52,19 +52,10 @@ void ScavTrap::attack(const std::string &target) {
 }
 
 void ScavTrap::guardGate() {
-    std::cout << "ScavTrap " << getName() << " is now in Gate Keeper Mode!" << std::endl;
-}
-
-void ScavTrap::printErrorMessage(eErrorMessage errorMessage) const {
-    switch (errorMessage) {
-        case ATTACK_FAIL:
-            std::cout << "ScavTrap " << getName() << " cannot attack" << std::endl;
-            break;
-        case TAKE_DAMAGE_FAIL:
-            std::cout << "ScavTrap " << getName() << " cannot take damage" << std::endl;
-            break;
-        case BE_REPAIRED_FAIL:
-            std::cout << "ScavTrap " << getName() << " cannot be repaired" << std::endl;
-            break;
+    if (!canOperate()) {
+        std::cout << "ScavTrap " << getName() << " cannot convert to Gate Keeper Mode" << std::endl;
+        return;
     }
+
+    std::cout << "ScavTrap " << getName() << " is now in Gate Keeper Mode!" << std::endl;
 }
