@@ -30,7 +30,7 @@ public:
 protected:
     FragTrap();
 
-private:
+protected:
     static const unsigned int DEFAULT_HIT_POINT = 100;
     static const unsigned int DEFAULT_ENERGY_POINT = 100;
     static const unsigned int DEFAULT_ATTACK_DAMAGE = 30;

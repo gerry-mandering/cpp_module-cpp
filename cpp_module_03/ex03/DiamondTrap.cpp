@@ -35,9 +35,8 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &diamondTrap) {
     return *this;
 }
 
-//static const 선언, 그 값으로 초기화 protected 사용,
 DiamondTrap::DiamondTrap(const std::string &name) :
-        ClapTrap(name + "_clap_name"),
+        ClapTrap(name + "_clap_name", FragTrap::DEFAULT_HIT_POINT, ScavTrap::DEFAULT_ENERGY_POINT, FragTrap::DEFAULT_ATTACK_DAMAGE),
         ScavTrap(),
         FragTrap(),
         mName(name) {
