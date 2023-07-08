@@ -50,18 +50,17 @@ private:
     static const unsigned int DEFAULT_ENERGY_POINT = 10;
     static const unsigned int DEFAULT_ATTACK_DAMAGE = 0;
 
-    // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX>?
 protected:
     bool canOperate() const;
     void useEnergy();
 
-protected:
+private:
     std::string mName;
     unsigned int mHitPoint;
     unsigned int mEnergyPoint;
     unsigned int mAttackDamage;
 
-protected:
+private:
     unsigned int mMaxHitPoint;
 
 private:

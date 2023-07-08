@@ -49,7 +49,7 @@ void DiamondTrap::attack(const std::string &target) {
 
 void DiamondTrap::whoAmI() {
     if (!canOperate()) {
-        std::cout << "DiamondTrap " << getName() << " cannot introduce itself" << std::endl;
+        std::cout << "DiamondTrap " << mName << " cannot introduce itself" << std::endl;
         return;
     }
 
