@@ -37,9 +37,6 @@ private:
 
 private:
     ScavTrap();
-
-private:
-    void printErrorMessage(eErrorMessage errorMessage) const;
 };
 
 #endif
