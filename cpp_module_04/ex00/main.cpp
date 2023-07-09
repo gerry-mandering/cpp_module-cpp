@@ -29,6 +29,10 @@ int main() {
     j->makeSound();
     meta->makeSound();
 
+    delete meta;
+    delete i;
+    delete j;
+
     const WrongAnimal *wrongAnimal = new WrongAnimal();
     const WrongAnimal *wrongCat = new WrongCat();
 
@@ -36,6 +40,9 @@ int main() {
 
     wrongCat->makeSound();
     wrongAnimal->makeSound();
+
+    delete wrongAnimal;
+    delete wrongCat;
 
     return 0;
 }
