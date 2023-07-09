@@ -23,7 +23,10 @@ public:
     Dog &operator=(const Dog &dog);
 
 public:
-    void makeSound();
+    void makeSound() const;
+
+private:
+    static const std::string DEFAULT_TYPE;
 };
 
 #endif

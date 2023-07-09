@@ -23,7 +23,10 @@ public:
     Cat &operator=(const Cat &cat);
 
 public:
-    void makeSound();
+    void makeSound() const;
+
+private:
+    static const std::string DEFAULT_TYPE;
 };
 
 #endif

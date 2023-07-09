@@ -16,12 +16,6 @@
 #include <iostream>
 
 class Animal {
-protected:
-    std::string type;
-
-protected:
-    const std::string &getType() const;
-
 public:
     Animal();
     ~Animal();
@@ -29,7 +23,16 @@ public:
     Animal &operator=(const Animal &animal);
 
 public:
-    void makeSound();
+    const std::string &getType() const;
+
+public:
+    virtual void makeSound() const;
+
+protected:
+    std::string type;
+
+private:
+    static const std::string DEFAULT_TYPE;
 };
 
 #endif

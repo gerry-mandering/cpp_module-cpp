@@ -12,19 +12,19 @@
 
 #include "Dog.hpp"
 
+const std::string Dog::DEFAULT_TYPE = "Dog";
+
 Dog::Dog() {
     std::cout << "Dog Constructor called" << std::endl;
 
-    type = "Dog";
+    type = Dog::DEFAULT_TYPE;
 }
 
 Dog::~Dog() {
     std::cout << "Dog Destructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &dog) {
-    *this = dog;
-}
+Dog::Dog(const Dog &dog) : Animal(dog) {}
 
 Dog &Dog::operator=(const Dog &dog) {
     if (this != &dog)
@@ -33,6 +33,6 @@ Dog &Dog::operator=(const Dog &dog) {
     return *this;
 }
 
-void Dog::makeSound() {
+void Dog::makeSound() const {
     std::cout << "I am a Dog! Woof~~!" << std::endl;
 }

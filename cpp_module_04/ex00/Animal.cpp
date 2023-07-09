@@ -12,10 +12,12 @@
 
 #include "Animal.hpp"
 
+const std::string Animal::DEFAULT_TYPE = "Animal";
+
 Animal::Animal() {
     std::cout << "Animal Constructor called" << std::endl;
 
-    type = "Animal";
+    type = Animal::DEFAULT_TYPE;
 }
 
 Animal::~Animal() {
@@ -33,10 +35,10 @@ Animal &Animal::operator=(const Animal &animal) {
     return *this;
 }
 
-void Animal::makeSound() {
-    std::cout << "This creature hasn't been born yet!" << std::endl;
-}
-
 const std::string &Animal::getType() const {
     return type;
+}
+
+void Animal::makeSound() const {
+    std::cout << "This creature hasn't been born yet!" << std::endl;
 }

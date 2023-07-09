@@ -12,19 +12,19 @@
 
 #include "Cat.hpp"
 
+const std::string Cat::DEFAULT_TYPE = "Cat";
+
 Cat::Cat() {
     std::cout << "Cat Constructor called" << std::endl;
 
-    type = "Cat";
+    type = Cat::DEFAULT_TYPE;
 }
 
 Cat::~Cat() {
     std::cout << "Cat Destructor called" << std::endl;
 }
 
-Cat::Cat(const Cat &cat) {
-    *this = cat;
-}
+Cat::Cat(const Cat &cat) : Animal(cat) {}
 
 Cat &Cat::operator=(const Cat &cat) {
     if (this != &cat)
@@ -33,6 +33,6 @@ Cat &Cat::operator=(const Cat &cat) {
     return *this;
 }
 
-void Cat::makeSound() {
+void Cat::makeSound() const {
     std::cout << "I am a Cat! Meow~~!" << std::endl;
 }
