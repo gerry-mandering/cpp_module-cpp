@@ -24,7 +24,7 @@ public:
     Brain &operator=(const Brain &brain);
 
 private:
-    static const unsigned int NUMBER_OF_IDEAS = 100;
+    static const int NUMBER_OF_IDEAS = 100;
 
 private:
     std::string ideas[Brain::NUMBER_OF_IDEAS];

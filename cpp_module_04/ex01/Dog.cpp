@@ -18,17 +18,24 @@ Dog::Dog() {
     std::cout << "Dog Constructor called" << std::endl;
 
     type = Dog::DEFAULT_TYPE;
+    mBrain = new Brain();
 }
 
 Dog::~Dog() {
     std::cout << "Dog Destructor called" << std::endl;
+
+    delete mBrain;
 }
 
-Dog::Dog(const Dog &dog) : Animal(dog) {}
+Dog::Dog(const Dog &dog) : Animal(dog) {
+    mBrain = dog.mBrain;
+}
 
 Dog &Dog::operator=(const Dog &dog) {
-    if (this != &dog)
+    if (this != &dog) {
+        mBrain = dog.mBrain;
         type = dog.getType();
+    }
 
     return *this;
 }

@@ -14,6 +14,7 @@
 #define DOG_H
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Dog : public Animal {
 public:
@@ -27,6 +28,9 @@ public:
 
 private:
     static const std::string DEFAULT_TYPE;
+
+private:
+    Brain *mBrain;
 };
 
 #endif

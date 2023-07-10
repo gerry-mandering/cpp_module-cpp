@@ -18,17 +18,24 @@ Cat::Cat() {
     std::cout << "Cat Constructor called" << std::endl;
 
     type = Cat::DEFAULT_TYPE;
+    mBrain = new Brain();
 }
 
 Cat::~Cat() {
     std::cout << "Cat Destructor called" << std::endl;
+
+    delete mBrain;
 }
 
-Cat::Cat(const Cat &cat) : Animal(cat) {}
+Cat::Cat(const Cat &cat) : Animal(cat) {
+    mBrain = cat.mBrain;
+}
 
 Cat &Cat::operator=(const Cat &cat) {
-    if (this != &cat)
+    if (this != &cat) {
         type = cat.getType();
+        mBrain = cat.mBrain;
+    }
 
     return *this;
 }

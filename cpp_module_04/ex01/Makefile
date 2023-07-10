@@ -15,12 +15,12 @@ CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = $(SRCS:.cpp=.o)
 SRCS =  main.cpp \
-		Animal.cpp \ 
-		Cat.cpp \ 
-		Dog.cpp \ 
-		WrongAnimal.cpp \ 
-		WrongCat.cpp \ 
-		Brain.cpp \ 
+		Animal.cpp \
+		Cat.cpp \
+		Dog.cpp \
+		WrongAnimal.cpp \
+		WrongCat.cpp \
+		Brain.cpp \
 
 all: $(NAME)
 $(NAME): $(OBJS)
