@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Color.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,24 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_H
-#define DOG_H
+#ifndef COLOR_H
+#define COLOR_H
 
-#include "Animal.hpp"
-#include "Color.hpp"
-
-class Dog : public Animal {
-public:
-    Dog();
-    ~Dog();
-    Dog(const Dog &dog);
-    Dog &operator=(const Dog &dog);
-
-public:
-    void makeSound() const;
-
-private:
-    static const std::string DEFAULT_TYPE;
-};
+#define NC "\e[0m"
+#define RED "\e[0;31m"
+#define GRN "\e[0;32m"
+#define CYN "\e[0;36m"
+#define PUR "\e[0;35m"
 
 #endif

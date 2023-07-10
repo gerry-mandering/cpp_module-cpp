@@ -13,7 +13,7 @@
 #include "Brain.hpp"
 
 Brain::Brain() {
-    std::cout << "Brain Constructor called" << std::endl;
+    std::cout << PUR "Brain Constructor called" NC << std::endl;
 
     for (int i = 0; i < Brain::NUMBER_OF_IDEAS; i++) {
         std::stringstream stream;
@@ -24,7 +24,7 @@ Brain::Brain() {
 }
 
 Brain::~Brain() {
-    std::cout << "Brain Destructor called" << std::endl;
+    std::cout << PUR "Brain Destructor called" NC << std::endl;
 }
 
 Brain::Brain(const Brain &brain) {

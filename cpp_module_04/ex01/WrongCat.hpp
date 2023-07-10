@@ -14,6 +14,7 @@
 #define WRONG_CAT_H
 
 #include "WrongAnimal.hpp"
+#include "Color.hpp"
 
 class WrongCat : public WrongAnimal {
 public:

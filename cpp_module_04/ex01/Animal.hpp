@@ -14,6 +14,7 @@
 #define ANIMAL_H
 
 #include <iostream>
+#include "Color.hpp"
 
 class Animal {
 public:

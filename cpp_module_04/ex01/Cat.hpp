@@ -15,6 +15,7 @@
 
 #include "Animal.hpp"
 #include "Brain.hpp"
+#include "Color.hpp"
 
 class Cat : public Animal {
 public:

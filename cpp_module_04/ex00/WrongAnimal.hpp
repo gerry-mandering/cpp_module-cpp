@@ -14,6 +14,7 @@
 #define WRONG_ANIMAL_H
 
 #include <iostream>
+#include "Color.hpp"
 
 class WrongAnimal {
 public:

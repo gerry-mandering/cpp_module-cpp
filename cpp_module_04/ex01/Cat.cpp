@@ -15,14 +15,14 @@
 const std::string Cat::DEFAULT_TYPE = "Cat";
 
 Cat::Cat() {
-    std::cout << "Cat Constructor called" << std::endl;
+    std::cout << GRN "Cat Constructor called" NC << std::endl;
 
     type = Cat::DEFAULT_TYPE;
     mBrain = new Brain();
 }
 
 Cat::~Cat() {
-    std::cout << "Cat Destructor called" << std::endl;
+    std::cout << GRN "Cat Destructor called" NC << std::endl;
 
     delete mBrain;
 }
@@ -41,5 +41,5 @@ Cat &Cat::operator=(const Cat &cat) {
 }
 
 void Cat::makeSound() const {
-    std::cout << "I am a Cat! Meow~~!" << std::endl;
+    std::cout << GRN "I am a Cat! Meow~~!" NC << std::endl;
 }

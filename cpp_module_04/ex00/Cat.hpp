@@ -14,6 +14,7 @@
 #define CAT_H
 
 #include "Animal.hpp"
+#include "Color.hpp"
 
 class Cat : public Animal {
 public:

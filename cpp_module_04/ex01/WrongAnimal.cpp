@@ -15,13 +15,13 @@
 const std::string WrongAnimal::DEFAULT_TYPE = "WrongAnimal";
 
 WrongAnimal::WrongAnimal() {
-    std::cout << "WrongAnimal Constructor called" << std::endl;
+    std::cout << RED "WrongAnimal Constructor called" NC << std::endl;
 
     type = WrongAnimal::DEFAULT_TYPE;
 }
 
 WrongAnimal::~WrongAnimal() {
-    std::cout << "WrongAnimal Destructor called" << std::endl;
+    std::cout << RED "WrongAnimal Destructor called" NC << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &wrongAnimal) {
@@ -40,5 +40,5 @@ const std::string &WrongAnimal::getType() const {
 }
 
 void WrongAnimal::makeSound() const {
-    std::cout << "This wrong creature hasn't been born yet!" << std::endl;
+    std::cout << RED "This wrong creature hasn't been born yet!" NC << std::endl;
 }

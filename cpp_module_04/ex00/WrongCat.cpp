@@ -15,13 +15,13 @@
 const std::string WrongCat::DEFAULT_TYPE = "WrongCat";
 
 WrongCat::WrongCat() {
-    std::cout << "WrongCat Constructor called" << std::endl;
+    std::cout << GRN "WrongCat Constructor called" NC << std::endl;
 
     type = WrongCat::DEFAULT_TYPE;
 }
 
 WrongCat::~WrongCat() {
-    std::cout << "WrongCat Destructor called" << std::endl;
+    std::cout << GRN "WrongCat Destructor called" NC << std::endl;
 }
 
 WrongCat::WrongCat(const WrongCat &wrongCat) : WrongAnimal(wrongCat) {}
@@ -34,5 +34,5 @@ WrongCat &WrongCat::operator=(const WrongCat &wrongCat) {
 }
 
 void WrongCat::makeSound() const {
-    std::cout << "I am a WrongCat! Meow~~?" << std::endl;
+    std::cout << GRN "I am a WrongCat! Meow~~?" NC << std::endl;
 }

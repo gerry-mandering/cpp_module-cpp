@@ -5,7 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 13:26:33 by minseok2          +#+    #+#             */
-/*   Updated: 2023/07/03 13:26:33 by minseok2         ###   ########.fr       */
+/*   Created: 2023/07/03 13:24:22 by minseok2          +#+    #+#             */
+/*   Updated: 2023/07/03 13:24:22 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "Animal.hpp"
+
+Animal::Animal() {
+    std::cout << RED "Animal Constructor called" NC << std::endl;
+}
+
+Animal::~Animal() {
+    std::cout << RED "Animal Destructor called" NC << std::endl;
+}
+
+Animal::Animal(const Animal &animal) {
+    *this = animal;
+}
+
+Animal &Animal::operator=(const Animal &animal) {
+    if (this != &animal)
+        type = animal.getType();
+
+    return *this;
+}
+
+const std::string &Animal::getType() const {
+    return type;
+}

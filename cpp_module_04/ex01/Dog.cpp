@@ -15,14 +15,14 @@
 const std::string Dog::DEFAULT_TYPE = "Dog";
 
 Dog::Dog() {
-    std::cout << "Dog Constructor called" << std::endl;
+    std::cout << CYN "Dog Constructor called" NC << std::endl;
 
     type = Dog::DEFAULT_TYPE;
     mBrain = new Brain();
 }
 
 Dog::~Dog() {
-    std::cout << "Dog Destructor called" << std::endl;
+    std::cout << CYN "Dog Destructor called" NC << std::endl;
 
     delete mBrain;
 }
@@ -41,5 +41,5 @@ Dog &Dog::operator=(const Dog &dog) {
 }
 
 void Dog::makeSound() const {
-    std::cout << "I am a Dog! Woof~~!" << std::endl;
+    std::cout << CYN "I am a Dog! Woof~~!" NC << std::endl;
 }

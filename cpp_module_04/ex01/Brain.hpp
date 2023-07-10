@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <sstream>
+#include "Color.hpp"
 
 class Brain {
 public:

@@ -32,17 +32,17 @@ int main() {
     delete meta;
     delete i;
     delete j;
-//
-//    const WrongAnimal *wrongAnimal = new WrongAnimal();
-//    const WrongAnimal *wrongCat = new WrongCat();
-//
-//    std::cout << wrongCat->getType() << " " << std::endl;
-//
-//    wrongCat->makeSound();
-//    wrongAnimal->makeSound();
-//
-//    delete wrongAnimal;
-//    delete wrongCat;
+
+    const WrongAnimal *wrongAnimal = new WrongAnimal();
+    const WrongAnimal *wrongCat = new WrongCat();
+
+    std::cout << wrongCat->getType() << " " << std::endl;
+
+    wrongCat->makeSound();
+    wrongAnimal->makeSound();
+
+    delete wrongAnimal;
+    delete wrongCat;
 
     return 0;
 }
