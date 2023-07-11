@@ -16,6 +16,12 @@
 
 int main(void) {
 
+    const Animal* dog = new Dog();
+    const Animal* cat = new Cat();
+
+    delete dog;//should not create a leak
+    delete cat;
+
     static const int ARRAY_SIZE = 10;
     Animal *animals[ARRAY_SIZE];
 
