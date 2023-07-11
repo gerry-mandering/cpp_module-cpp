@@ -14,14 +14,15 @@
 #define A_MATERIA_H
 
 #include <iostream>
-#include "ICharacter.hpp"
+
+class ICharacter;
 
 class AMateria {
 public:
     AMateria();
     virtual ~AMateria();
-    AMateria(const AMateria &aMateria);
-    AMateria &operator=(const AMateria &aMateria);
+    AMateria(const AMateria &materia);
+    AMateria &operator=(const AMateria &materia);
 
 public:
     AMateria(std::string const &type);

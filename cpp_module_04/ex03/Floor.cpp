@@ -13,14 +13,10 @@
 #include "Floor.hpp"
 
 Floor *Floor::mFloorInstancePtr = NULL;
+AMateria* Floor::mStoredMaterias[Floor::MAX_STORE_SIZE];
+int Floor::mStoredMateriaCount = 0;
 
-Floor::Floor() {
-    mStoredMateriaCount = 0;
-
-    for (int i = 0; i < Floor::MAX_STORE_SIZE; i++) {
-        mStoredMaterias[i] = NULL;
-    }
-}
+Floor::Floor() {}
 
 Floor::~Floor() {}
 
@@ -36,6 +32,7 @@ Floor &Floor::operator=(const Floor &floor) {
 Floor *Floor::getInstance() {
     if (mFloorInstancePtr == NULL) {
         mFloorInstancePtr = new Floor();
+        std::atexit(Floor::clearInstance);
     }
 
     return mFloorInstancePtr;
@@ -52,7 +49,14 @@ void Floor::storeMateria(AMateria *materia) {
     ++mStoredMateriaCount;
 }
 
-void Floor::resetInstance() {
+void Floor::clearInstance() {
+    for (int i = 0; i < Floor::MAX_STORE_SIZE; i++) {
+        if (mStoredMaterias[i] == NULL)
+            break;
+
+        delete mStoredMaterias[i];
+    }
+
     delete mFloorInstancePtr;
     mFloorInstancePtr = NULL;
 }

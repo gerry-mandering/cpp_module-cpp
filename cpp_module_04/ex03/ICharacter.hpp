@@ -14,20 +14,12 @@
 #define I_CHARACTER_H
 
 #include <iostream>
-
-class AMateria;
+#include "AMateria.hpp"
 
 class ICharacter {
 public:
-    ICharacter();
-    virtual ~ICharacter();
-    ICharacter(const ICharacter &iCharacter);
-    ICharacter &operator=(const ICharacter &iCharacter);
-
-public:
+    virtual ~ICharacter() {}
     virtual const std::string &getName() const = 0;
-
-public:
     virtual void equip(AMateria *m) = 0;
     virtual void unequip(int idx) = 0;
     virtual void use(int idx, ICharacter &target) = 0;

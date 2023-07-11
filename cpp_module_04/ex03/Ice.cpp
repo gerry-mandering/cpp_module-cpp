@@ -12,8 +12,10 @@
 
 #include "Ice.hpp"
 
+const std::string Ice::DEFAULT_TYPE = "ice";
+
 Ice::Ice() {
-    mType = "ice";
+    mType = Ice::DEFAULT_TYPE;
 }
 
 Ice::~Ice() {}

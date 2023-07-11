@@ -12,10 +12,16 @@
 
 #include "Character.hpp"
 
-//private?
 Character::Character() {}
 
-Character::~Character() {}
+Character::~Character() {
+    for (int i = 0; i < Character::MAX_INVENTORY_SIZE; i++) {
+        if (mInventory[i] == NULL)
+            break;
+
+        delete mInventory[i];
+    }
+}
 
 Character::Character(const Character &character) {
     *this = character;
@@ -27,61 +33,77 @@ Character &Character::operator=(const Character &character) {
 
     mName = character.getName();
     for (int i = 0; i < Character::MAX_INVENTORY_SIZE; i++) {
-        if (character.mInventory[i] == NULL)
-            break;
+        if (mInventory[i] != NULL)
+            delete mInventory[i];
 
         mInventory[i] = character.mInventory[i]->clone();
     }
-    mMateriaCount = character.mMateriaCount;
+    mMateriaCount = character.getMateriaCount();
 
     return *this;
 }
 
-Character::Character(const std::string &name) : mName(name) {
+Character::Character(const std::string &name) : mName(name), mMateriaCount(0) {
     for (int i = 0; i < Character::MAX_INVENTORY_SIZE; i++) {
         mInventory[i] = NULL;
     }
-
-    mMateriaCount = 0;
 }
 
 const std::string &Character::getName() const { return mName; }
 
+int Character::getMateriaCount() const { return mMateriaCount; }
+
 void Character::equip(AMateria *m) {
-    if (m == NULL)
+    if (m == NULL) {
+        std::cout << "Error: Wrong Materia Input!" << std::endl;
         return;
+    }
 
     if (mMateriaCount == Character::MAX_INVENTORY_SIZE) {
+        std::cout << "Error: Character Inventory is Full!" << std::endl;
         delete m;
         return;
     }
 
-    mInventory[mMateriaCount - 1] = m;
-    mMateriaCount++;
+    for (int i = 0; i < Character::MAX_INVENTORY_SIZE; i++) {
+        if (mInventory[i] == NULL)
+        {
+            mInventory[i] = m;
+            break;
+        }
+    }
+
+    ++mMateriaCount;
 }
 
 void Character::unequip(int idx) {
-    if (idx < 0 || idx >= Character::MAX_INVENTORY_SIZE)
+    if (idx < 0 || idx >= Character::MAX_INVENTORY_SIZE) {
+        std::cout << "Error: Wrong index entered!" << std::endl;
         return;
+    }
 
-    if (mInventory[idx] == NULL)
+    if (mInventory[idx] == NULL) {
+        std::cout << "Error: Inventory is Empty!" << std::endl;
         return;
+    }
 
     Floor *floor = Floor::getInstance();
     floor->storeMateria(mInventory[idx]);
 
-    for (int i = idx; i < Character::MAX_INVENTORY_SIZE - 1; i++) {
-        mInventory[i] = mInventory[i + 1];
-    }
-    mInventory[Character::MAX_INVENTORY_SIZE - 1] = NULL;
+    mInventory[idx] = NULL;
+    --mMateriaCount;
 }
 
 void Character::use(int idx, ICharacter &target) {
-    if (idx < 0 || idx >= Character::MAX_INVENTORY_SIZE)
+    if (idx < 0 || idx >= Character::MAX_INVENTORY_SIZE) {
+        std::cout << "Error: Wrong index entered!" << std::endl;
         return;
+    }
 
-    if (mInventory[idx] == NULL)
+    if (mInventory[idx] == NULL) {
+        std::cout << "Error: Inventory is Empty!" << std::endl;
         return;
+    }
 
     mInventory[idx]->use(target);
 }

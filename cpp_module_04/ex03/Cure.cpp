@@ -12,8 +12,10 @@
 
 #include "Cure.hpp"
 
+const std::string Cure::DEFAULT_TYPE = "cure";
+
 Cure::Cure() {
-    mType = "cure";
+    mType = DEFAULT_TYPE;
 }
 
 Cure::~Cure() {}

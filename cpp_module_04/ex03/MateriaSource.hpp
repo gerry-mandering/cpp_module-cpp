@@ -27,6 +27,9 @@ public:
     void learnMateria(AMateria *materia);
     AMateria *createMateria(std::string const &type);
 
+public:
+    int getMateriaCount() const;
+
 private:
     static const int MAX_SOURCE_INVENTORY_COUNT = 4;
 

@@ -27,6 +27,9 @@ public:
 public:
     Cure *clone() const;
     void use(ICharacter &target);
+
+private:
+    static const std::string DEFAULT_TYPE;
 };
 
 #endif

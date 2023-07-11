@@ -22,31 +22,46 @@ MateriaSource::MateriaSource() {
 
 MateriaSource::~MateriaSource() {
     for (int i = 0; i < MateriaSource::MAX_SOURCE_INVENTORY_COUNT; i++) {
+        if (mSourceInventory[i] == NULL)
+            break;
+
         delete mSourceInventory[i];
     }
 }
 
-//고쳐!!!!!!!!!!!!!!!!!
 MateriaSource::MateriaSource(const MateriaSource &materiaSource) {
-    (void)materiaSource;
+    *this = materiaSource;
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &materiaSource) {
-    (void)materiaSource;
+    if (this == &materiaSource)
+        return *this;
+
+    for (int i = 0; i < MateriaSource::MAX_SOURCE_INVENTORY_COUNT; i++) {
+        if (mSourceInventory[i] != NULL)
+            delete mSourceInventory[i];
+
+        mSourceInventory[i] = materiaSource.mSourceInventory[i]->clone();
+    }
+    mMateriaCount = materiaSource.getMateriaCount();
+
     return *this;
 }
 
 void MateriaSource::learnMateria(AMateria *materia) {
-    if (materia == NULL)
+    if (materia == NULL) {
+        std::cout << "Error: Wrong Materia Input!" << std::endl;
         return;
+    }
 
     if (mMateriaCount == MateriaSource::MAX_SOURCE_INVENTORY_COUNT) {
+        std::cout << "Error: Source Inventory is Full!" << std::endl;
         delete materia;
         return;
     }
 
     mSourceInventory[mMateriaCount] = materia;
-    mMateriaCount++;
+    ++mMateriaCount;
 }
 
 AMateria *MateriaSource::createMateria(const std::string &type) {
@@ -61,3 +76,5 @@ AMateria *MateriaSource::createMateria(const std::string &type) {
 
     return 0;
 }
+
+int MateriaSource::getMateriaCount() const { return mMateriaCount; }

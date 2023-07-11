@@ -24,7 +24,7 @@ public:
 
 public:
     static Floor *getInstance();
-    static void resetInstance();
+    static void clearInstance();
 
 public:
     void storeMateria(AMateria *materia);
@@ -36,10 +36,10 @@ private:
     static const int MAX_STORE_SIZE = 100;
 
 private:
-    AMateria *mStoredMaterias[Floor::MAX_STORE_SIZE];
+    static AMateria *mStoredMaterias[Floor::MAX_STORE_SIZE];
 
 private:
-    int mStoredMateriaCount;
+    static int mStoredMateriaCount;
 
 private:
     Floor();

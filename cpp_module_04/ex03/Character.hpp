@@ -15,13 +15,11 @@
 
 #include <iostream>
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
 #include "Floor.hpp"
-
-class AMateria;
 
 class Character : public ICharacter {
 public:
-    Character();
     ~Character();
     Character(const Character &character);
     Character &operator=(const Character &character);
@@ -31,6 +29,7 @@ public:
 
 public:
     const std::string &getName() const;
+    int getMateriaCount() const;
 
 public:
     void equip(AMateria *m);
@@ -46,6 +45,9 @@ private:
 
 private:
     int mMateriaCount;
+
+private:
+    Character();
 };
 
 #endif

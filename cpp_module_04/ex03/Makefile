@@ -16,12 +16,9 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = $(SRCS:.cpp=.o)
 SRCS =  main.cpp \
 		AMateria.cpp \
-		Materia.cpp \
 		Ice.cpp \
 		Cure.cpp \
-		ICharacter.cpp \
 		Character.cpp \
-		IMateriaSource.cpp \
 		MateriaSource.cpp \
 		Floor.cpp \
 

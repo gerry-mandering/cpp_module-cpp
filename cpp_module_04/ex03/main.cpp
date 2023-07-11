@@ -17,7 +17,6 @@
 #include "AMateria.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
-#include "Floor.hpp"
 
 int main() {
 
@@ -37,6 +36,9 @@ int main() {
 
     me->use(0, *bob);
     me->use(1, *bob);
+
+    me->unequip(0);
+    me->unequip(1);
 
     delete bob;
     delete me;
