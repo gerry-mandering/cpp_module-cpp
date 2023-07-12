@@ -28,6 +28,7 @@ Cat::~Cat() {
 }
 
 Cat::Cat(const Cat &cat) : Animal(cat) {
+//    mBrain = new Brain(cat.mBrain);
     mBrain = cat.mBrain;
 }
 

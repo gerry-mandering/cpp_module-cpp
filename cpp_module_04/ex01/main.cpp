@@ -22,6 +22,21 @@ int main(void) {
     delete dog;//should not create a leak
     delete cat;
 
+    static const int ARRAY_SIZE = 10;
+    Animal *animals[ARRAY_SIZE];
+
+    int i;
+    for (i = 0; i < ARRAY_SIZE / 2; i++) {
+        animals[i] = new Dog();
+    }
+    for (; i < ARRAY_SIZE; i++) {
+        animals[i] = new Cat();
+    }
+
+    for (int j = 0; j < ARRAY_SIZE; j++) {
+        delete animals[j];
+    }
+
     Cat a;
     {
         Cat b = a;
