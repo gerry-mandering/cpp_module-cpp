@@ -16,27 +16,16 @@ Character::Character() {}
 
 Character::~Character() {
     for (int i = 0; i < Character::MAX_INVENTORY_SIZE; i++) {
-        if (mInventory[i] == NULL)
-            break;
-
         delete mInventory[i];
     }
 }
 
 Character::Character(const Character &character) {
-    if (this == &character)
-        return;
-
-    mName = character.getName();
-    mMateriaCount = character.getMateriaCount();
-
     for (int i = 0; i < Character::MAX_INVENTORY_SIZE; i++) {
-        if (character.mInventory[i] != NULL) {
-            mInventory[i] = character.mInventory[i]->clone();
-        } else {
-            mInventory[i] = NULL;
-        }
+        mInventory[i] = NULL;
     }
+
+    *this = character;
 }
 
 Character &Character::operator=(const Character &character) {

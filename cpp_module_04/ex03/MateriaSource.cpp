@@ -22,14 +22,15 @@ MateriaSource::MateriaSource() {
 
 MateriaSource::~MateriaSource() {
     for (int i = 0; i < MateriaSource::MAX_SOURCE_INVENTORY_COUNT; i++) {
-        if (mSourceInventory[i] == NULL)
-            break;
-
         delete mSourceInventory[i];
     }
 }
 
 MateriaSource::MateriaSource(const MateriaSource &materiaSource) {
+    for (int i = 0; i < MateriaSource::MAX_SOURCE_INVENTORY_COUNT; i++) {
+        mSourceInventory[i] = NULL;
+    }
+
     *this = materiaSource;
 }
 
