@@ -31,6 +31,9 @@ public:
 
 protected:
     std::string type;
+
+private:
+    static const std::string DEFAULT_TYPE;
 };
 
 #endif

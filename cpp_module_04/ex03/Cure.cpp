@@ -15,7 +15,7 @@
 const std::string Cure::DEFAULT_TYPE = "cure";
 
 Cure::Cure() {
-    mType = DEFAULT_TYPE;
+    mType = Cure::DEFAULT_TYPE;
 }
 
 Cure::~Cure() {}
@@ -23,10 +23,7 @@ Cure::~Cure() {}
 Cure::Cure(const Cure &cure) : AMateria(cure) {}
 
 Cure &Cure::operator=(const Cure &cure) {
-    if (this != &cure) {
-        mType = cure.getType();
-    }
-
+    (void)cure;
     return *this;
 }
 

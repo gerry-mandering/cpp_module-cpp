@@ -12,7 +12,7 @@
 
 NAME = FinalFantasy
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 OBJS = $(SRCS:.cpp=.o)
 SRCS =  main.cpp \
 		AMateria.cpp \

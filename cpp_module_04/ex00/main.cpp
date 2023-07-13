@@ -18,7 +18,7 @@
 
 int main() {
 
-    std::cout << "Basic"
+    std::cout << "<Animal Test>" << std::endl;
 
     const Animal *meta = new Animal();
     const Animal *j = new Dog();
@@ -27,21 +27,27 @@ int main() {
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
 
+    meta->makeSound();
     i->makeSound(); //will output the cat sound!
     j->makeSound();
-    meta->makeSound();
 
     delete meta;
     delete i;
     delete j;
+
+
+    std::cout << "\n\n";
+
+
+    std::cout << "<WrongAnimal Test>" << std::endl;
 
     const WrongAnimal *wrongAnimal = new WrongAnimal();
     const WrongAnimal *wrongCat = new WrongCat();
 
     std::cout << wrongCat->getType() << " " << std::endl;
 
-    wrongCat->makeSound();
     wrongAnimal->makeSound();
+    wrongCat->makeSound();
 
     delete wrongAnimal;
     delete wrongCat;

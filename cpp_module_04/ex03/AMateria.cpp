@@ -21,9 +21,7 @@ AMateria::AMateria(const AMateria &materia) {
 }
 
 AMateria &AMateria::operator=(const AMateria &materia) {
-    if (this != &materia)
-        return *this;
-
+    (void)materia;
     return *this;
 }
 

@@ -44,7 +44,8 @@ int main() {
     delete me;
     delete src;
 
-    Character a;
+    Character a("gg");
+
     {
         Character b = a;
     }

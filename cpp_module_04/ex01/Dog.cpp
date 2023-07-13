@@ -28,13 +28,15 @@ Dog::~Dog() {
 }
 
 Dog::Dog(const Dog &dog) : Animal(dog) {
-    mBrain = dog.mBrain;
+    mBrain = new Brain(*dog.mBrain);
 }
 
 Dog &Dog::operator=(const Dog &dog) {
     if (this != &dog) {
-        mBrain = dog.mBrain;
         type = dog.getType();
+
+        delete mBrain;
+        mBrain = new Brain(*dog.mBrain);
     }
 
     return *this;

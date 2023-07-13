@@ -28,14 +28,15 @@ Cat::~Cat() {
 }
 
 Cat::Cat(const Cat &cat) : Animal(cat) {
-//    mBrain = new Brain(cat.mBrain);
-    mBrain = cat.mBrain;
+    mBrain = new Brain(*cat.mBrain);
 }
 
 Cat &Cat::operator=(const Cat &cat) {
     if (this != &cat) {
         type = cat.getType();
-        mBrain = cat.mBrain;
+
+        delete mBrain;
+        mBrain = new Brain(*cat.mBrain);
     }
 
     return *this;

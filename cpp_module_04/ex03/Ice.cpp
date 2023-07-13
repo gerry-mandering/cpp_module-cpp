@@ -23,10 +23,7 @@ Ice::~Ice() {}
 Ice::Ice(const Ice &ice) : AMateria(ice) {}
 
 Ice &Ice::operator=(const Ice &ice) {
-    if (this != &ice) {
-        mType = ice.getType();
-    }
-
+    (void)ice;
     return *this;
 }
 

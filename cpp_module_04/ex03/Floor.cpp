@@ -57,6 +57,8 @@ void Floor::clearInstance() {
         delete mStoredMaterias[i];
     }
 
+    mStoredMateriaCount = 0;
+
     delete mFloorInstancePtr;
     mFloorInstancePtr = NULL;
 }

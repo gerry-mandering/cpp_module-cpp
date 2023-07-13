@@ -24,7 +24,19 @@ Character::~Character() {
 }
 
 Character::Character(const Character &character) {
-    *this = character;
+    if (this == &character)
+        return;
+
+    mName = character.getName();
+    mMateriaCount = character.getMateriaCount();
+
+    for (int i = 0; i < Character::MAX_INVENTORY_SIZE; i++) {
+        if (character.mInventory[i] != NULL) {
+            mInventory[i] = character.mInventory[i]->clone();
+        } else {
+            mInventory[i] = NULL;
+        }
+    }
 }
 
 Character &Character::operator=(const Character &character) {
@@ -32,13 +44,16 @@ Character &Character::operator=(const Character &character) {
         return *this;
 
     mName = character.getName();
-    for (int i = 0; i < Character::MAX_INVENTORY_SIZE; i++) {
-        if (mInventory[i] != NULL)
-            delete mInventory[i];
-
-        mInventory[i] = character.mInventory[i]->clone();
-    }
     mMateriaCount = character.getMateriaCount();
+    for (int i = 0; i < Character::MAX_INVENTORY_SIZE; i++) {
+        if (mInventory[i] != NULL) {
+            delete mInventory[i];
+            mInventory[i] = NULL;
+        }
+
+        if (character.mInventory[i] != NULL)
+            mInventory[i] = character.mInventory[i]->clone();
+    }
 
     return *this;
 }

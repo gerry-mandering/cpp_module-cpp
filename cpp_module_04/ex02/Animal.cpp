@@ -12,8 +12,12 @@
 
 #include "Animal.hpp"
 
+const std::string Animal::DEFAULT_TYPE = "Animal";
+
 Animal::Animal() {
     std::cout << RED "Animal Constructor called" NC << std::endl;
+
+    type = Animal::DEFAULT_TYPE;
 }
 
 Animal::~Animal() {
