@@ -38,13 +38,13 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &materiaSource) {
     if (this == &materiaSource)
         return *this;
 
+    mMateriaCount = materiaSource.getMateriaCount();
     for (int i = 0; i < MateriaSource::MAX_SOURCE_INVENTORY_COUNT; i++) {
         if (mSourceInventory[i] != NULL)
             delete mSourceInventory[i];
 
         mSourceInventory[i] = materiaSource.mSourceInventory[i]->clone();
     }
-    mMateriaCount = materiaSource.getMateriaCount();
 
     return *this;
 }
@@ -75,7 +75,7 @@ AMateria *MateriaSource::createMateria(const std::string &type) {
         }
     }
 
-    return 0;
+    return NULL;
 }
 
 int MateriaSource::getMateriaCount() const { return mMateriaCount; }
