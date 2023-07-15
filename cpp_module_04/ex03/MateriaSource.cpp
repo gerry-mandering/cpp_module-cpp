@@ -43,7 +43,8 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &materiaSource) {
         if (mSourceInventory[i] != NULL)
             delete mSourceInventory[i];
 
-        mSourceInventory[i] = materiaSource.mSourceInventory[i]->clone();
+        if (materiaSource.mSourceInventory[i] != NULL)
+            mSourceInventory[i] = materiaSource.mSourceInventory[i]->clone();
     }
 
     return *this;
