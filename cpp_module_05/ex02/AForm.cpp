@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Form::Form() : mName(std::string()), mIsSigned(false), mRequiredGradeToSign(0), mRequiredGradeToExecute(0) {}
 

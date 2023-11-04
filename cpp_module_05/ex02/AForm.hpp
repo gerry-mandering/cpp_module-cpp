@@ -7,12 +7,12 @@ class AForm
 {
 
   public:
-    ~Form();
-    Form(const Form &form);
-    Form &operator=(const Form &form);
+    ~AForm();
+    AForm(const AForm &aForm);
+    AForm &operator=(const AForm &aForm);
 
   public:
-    Form(const std::string &name, const int requiredGradeToSign, const int requiredGradeToExecute);
+    AForm(const std::string &name, const int requiredGradeToSign, const int requiredGradeToExecute);
 
   public:
     const std::string &getName() const;
@@ -34,7 +34,7 @@ class AForm
     };
 
   private:
-    Form();
+    AForm();
 
   private:
     const std::string mName;
@@ -43,6 +43,6 @@ class AForm
     const int mRequiredGradeToExecute;
 };
 
-std::ostream &operator<<(std::ostream &output, const Form &form);
+std::ostream &operator<<(std::ostream &output, const AForm &aForm);
 
 #endif
