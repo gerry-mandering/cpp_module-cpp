@@ -3,23 +3,22 @@
 
 int main(void) {
 
+    Bureaucrat bureaucrat("Bureaucrat", 100);
+    std::cout << bureaucrat << std::endl;
+    std::cout << std::endl;
+
     // Normal Case
-    Bureaucrat bureaucratA("BureaucratA", 1);
-    std::cout << bureaucratA << std::endl;
+    Form normalForm("Normal Form", 120, 120);
+    std::cout << normalForm << std::endl;
 
-    Form formA("formA", 1, 1);
-    std::cout << formA << std::endl;
-
-    bureaucratA.signForm(formA);
+    bureaucrat.signForm(normalForm);
+    std::cout << std::endl;
 
     // GradeTooLowException
-    Bureaucrat bureaucratB("BureaucratB", 150);
-    std::cout << bureaucratB << std::endl;
+    Form topLevelForm("Top Level Form", 1, 1);
+    std::cout << topLevelForm << std::endl;
 
-    Form formB("formB", 1, 1);
-    std::cout << formB << std::endl;
-
-    bureaucratB.signForm(formB);
+    bureaucrat.signForm(topLevelForm);
 
     return 0;
 }

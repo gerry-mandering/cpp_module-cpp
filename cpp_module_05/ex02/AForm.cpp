@@ -1,29 +1,30 @@
 #include "AForm.hpp"
 
-AForm::AForm() : mName(std::string()), mIsSigned(false), mRequiredGradeToSign(0), mRequiredGradeToExecute(0) {}
+AForm::AForm()
+    : mName(std::string()), mIsSigned(false), mRequiredGradeToSign(150), mRequiredGradeToExecute(150),
+      mTarget(std::string())
+{
+}
 
 AForm::~AForm() {}
 
-AForm::AForm(const AForm &aForm)
-    : mName(aForm.mName), mRequiredGradeToSign(aForm.mRequiredGradeToSign),
-      mRequiredGradeToExecute(aForm.mRequiredGradeToExecute)
+AForm::AForm(const AForm &other)
+    : mName(other.mName), mRequiredGradeToSign(other.mRequiredGradeToSign),
+      mRequiredGradeToExecute(other.mRequiredGradeToExecute)
 {
-    *this = aForm;
+    mIsSigned = other.mIsSigned;
 }
 
-AForm &AForm::operator=(const AForm &aForm)
+AForm &AForm::operator=(const AForm &other)
 {
-    if (this != &aForm)
-    {
-        mIsSigned = aForm.mIsSigned;
-    }
-
+    (void)other;
     return *this;
 }
 
-AForm::AForm(const std::string &name, const int requiredGradeToSign, const int requiredGradeToExecute)
+AForm::AForm(const std::string &name, const int requiredGradeToSign, const int requiredGradeToExecute,
+             const std::string &target)
     : mName(name), mIsSigned(false), mRequiredGradeToSign(requiredGradeToSign),
-      mRequiredGradeToExecute(requiredGradeToExecute)
+      mRequiredGradeToExecute(requiredGradeToExecute), mTarget(target)
 {
     if (mRequiredGradeToSign < 1 || mRequiredGradeToExecute < 1)
     {
@@ -55,9 +56,14 @@ const int &AForm::getRequiredGradeToExecute() const
     return mRequiredGradeToExecute;
 }
 
+const std::string &AForm::getTarget() const
+{
+    return mTarget;
+}
+
 void AForm::beSigned(const Bureaucrat &bureaucrat)
 {
-    if (bureaucrat.getGrade() > mRequiredGradeToSign)
+    if (bureaucrat.getGrade() >= mRequiredGradeToSign)
     {
         throw AForm::GradeTooLowException();
     }
@@ -72,7 +78,7 @@ void AForm::execute(const Bureaucrat &executor) const
         throw AForm::FormIsNotSignedException();
     }
 
-    if (executor.getGrade() > mRequiredGradeToExecute)
+    if (executor.getGrade() >= mRequiredGradeToExecute)
     {
         throw AForm::GradeTooLowException();
     }
@@ -95,10 +101,10 @@ const char *AForm::FormIsNotSignedException::what() const throw()
     return "Form is not signed";
 }
 
-std::ostream &operator<<(std::ostream &output, const AForm &aForm)
+std::ostream &operator<<(std::ostream &output, const AForm &form)
 {
-    output << aForm.getName() << ", IsSigned: " << (aForm.getIsSigned() ? "true" : "false")
-           << ", RequiredGradeToSign: " << aForm.getRequiredGradeToSign()
-           << ", RequiredGradeToExecute: " << aForm.getRequiredGradeToExecute();
+    output << form.getName() << ", IsSigned: " << (form.getIsSigned() ? "true" : "false")
+           << ", RequiredGradeToSign: " << form.getRequiredGradeToSign()
+           << ", RequiredGradeToExecute: " << form.getRequiredGradeToExecute() << ", Target: " << form.getTarget();
     return output;
 }

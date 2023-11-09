@@ -2,14 +2,13 @@
 #define ROBOTOMYREQUESTFORM_H
 
 #include "AForm.hpp"
-#include <ctime>
+#include <cstdlib>
 
 class RobotomyRequestForm : public AForm
 {
   public:
     ~RobotomyRequestForm();
-    RobotomyRequestForm(RobotomyRequestForm const &robotomyRequestForm);
-    RobotomyRequestForm &operator=(RobotomyRequestForm const &robotomyRequestForm);
+    RobotomyRequestForm(RobotomyRequestForm const &other);
 
   public:
     RobotomyRequestForm(const std::string &target);
@@ -19,9 +18,7 @@ class RobotomyRequestForm : public AForm
 
   private:
     RobotomyRequestForm();
-
-  private:
-    std::string mTarget;
+    RobotomyRequestForm &operator=(RobotomyRequestForm const &other);
 };
 
 #endif

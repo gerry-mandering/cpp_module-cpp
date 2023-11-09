@@ -2,26 +2,29 @@
 #include "Bureaucrat.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
-#include "ShruberryCreationForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include <ctime>
 
 int main(void)
 {
+    srand(time(NULL));
 
     // Top level bureaucrat
     Bureaucrat topLevelBureaucrat("Top Level Bureaucrat", 1);
     std::cout << topLevelBureaucrat << std::endl;
     std::cout << std::endl;
 
-    AForm *shruberryCreationFormA = new ShruberryCreationForm("Cluster");
+    AForm *shrubberyCreationFormA = new ShrubberyCreationForm("Cluster");
     AForm *robotomyRequestFormA = new RobotomyRequestForm("AlphaGO");
     AForm *presidentialPardonFormA = new PresidentialPardonForm("Innocent Hitchhiker");
 
-    AForm *formsA[] = {shruberryCreationFormA, robotomyRequestFormA, presidentialPardonFormA};
+    AForm *formsA[] = {shrubberyCreationFormA, robotomyRequestFormA, presidentialPardonFormA};
 
     for (int i = 0; i < 3; i++)
     {
         topLevelBureaucrat.signForm(*formsA[i]);
         topLevelBureaucrat.executeForm(*formsA[i]);
+        std::cout << *formsA[i] << std::endl;
         std::cout << std::endl;
         delete formsA[i];
     }
@@ -31,11 +34,11 @@ int main(void)
     std::cout << lowLevelBureaucrat << std::endl;
     std::cout << std::endl;
 
-    AForm *shruberryCreationFormB = new ShruberryCreationForm("Cluster");
+    AForm *shrubberyCreationFormB = new ShrubberyCreationForm("Cluster");
     AForm *robotomyRequestFormB = new RobotomyRequestForm("AlphaGO");
     AForm *presidentialPardonFormB = new PresidentialPardonForm("Innocent Hitchhiker");
 
-    AForm *formsB[] = {shruberryCreationFormB, robotomyRequestFormB, presidentialPardonFormB};
+    AForm *formsB[] = {shrubberyCreationFormB, robotomyRequestFormB, presidentialPardonFormB};
 
     for (int i = 0; i < 3; i++)
     {

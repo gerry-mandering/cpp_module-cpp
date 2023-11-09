@@ -4,28 +4,30 @@ int main(void) {
 
     // Normal Case
     try {
-        Bureaucrat bureaucrat("Bureaucrat", 20);
-        std::cout << bureaucrat << std::endl;
-        bureaucrat.decreaseGrade();
-        std::cout << bureaucrat << std::endl;
-        bureaucrat.increaseGrade();
-        std::cout << bureaucrat << std::endl;
+        Bureaucrat normalBureaucrat("Normal Bureaucrat", 50);
+        std::cout << normalBureaucrat << std::endl;
+        normalBureaucrat.decreaseGrade();
+        std::cout << normalBureaucrat << std::endl;
+        normalBureaucrat.increaseGrade();
+        std::cout << normalBureaucrat << std::endl;
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
+    std::cout << std::endl;
 
     // GradeTooLowException while constructing
     try {
-        Bureaucrat bureaucrat("Bureaucrat", 151);
+        Bureaucrat weirdBureaucrat("Weird Bureaucrat", 151);
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
+    std::cout << std::endl;
 
     // GradeTooHighException
     try {
-        Bureaucrat bureaucrat("Bureaucrat", 1);
-        std::cout << bureaucrat << std::endl;
-        bureaucrat.increaseGrade();
+        Bureaucrat topLevelBureaucrat("Top Level Bureaucrat", 1);
+        std::cout << topLevelBureaucrat << std::endl;
+        topLevelBureaucrat.increaseGrade();
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }

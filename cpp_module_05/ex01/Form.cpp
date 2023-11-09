@@ -1,23 +1,19 @@
 #include "Form.hpp"
 
-Form::Form() : mName(std::string()), mIsSigned(false), mRequiredGradeToSign(0), mRequiredGradeToExecute(0) {}
+Form::Form() : mName(std::string()), mIsSigned(false), mRequiredGradeToSign(150), mRequiredGradeToExecute(150) {}
 
 Form::~Form() {}
 
-Form::Form(const Form &form)
-    : mName(form.mName), mRequiredGradeToSign(form.mRequiredGradeToSign),
-      mRequiredGradeToExecute(form.mRequiredGradeToExecute)
+Form::Form(const Form &other)
+    : mName(other.mName), mRequiredGradeToSign(other.mRequiredGradeToSign),
+      mRequiredGradeToExecute(other.mRequiredGradeToExecute)
 {
-    *this = form;
+    mIsSigned = other.mIsSigned;
 }
 
-Form &Form::operator=(const Form &form)
+Form &Form::operator=(const Form &other)
 {
-    if (this != &form)
-    {
-        mIsSigned = form.mIsSigned;
-    }
-
+    (void)other;
     return *this;
 }
 
@@ -57,7 +53,7 @@ const int &Form::getRequiredGradeToExecute() const
 
 void Form::beSigned(const Bureaucrat &bureaucrat)
 {
-    if (bureaucrat.getGrade() > mRequiredGradeToSign)
+    if (bureaucrat.getGrade() >= mRequiredGradeToSign)
     {
         throw Form::GradeTooLowException();
     }
@@ -77,7 +73,7 @@ const char *Form::GradeTooLowException::what() const throw()
 
 std::ostream &operator<<(std::ostream &output, const Form &form)
 {
-    output << form.getName() << " form, IsSigned: " << form.getIsSigned()
+    output << form.getName() << ", IsSigned: " << (form.getIsSigned() ? "true" : "false")
            << ", RequiredGradeToSign: " << form.getRequiredGradeToSign()
            << ", RequiredGradeToExecute: " << form.getRequiredGradeToExecute();
     return output;

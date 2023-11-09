@@ -1,26 +1,19 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : mTarget(std::string()) {}
+RobotomyRequestForm::RobotomyRequestForm() {}
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &robotomyRequestForm)
-{
-    *this = robotomyRequestForm;
-}
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &other) : AForm(other) {}
 
-RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &robotomyRequestForm)
+RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &other)
 {
-    if (this != &robotomyRequestForm)
-    {
-        mTarget = robotomyRequestForm.mTarget;
-    }
-
+    (void)other;
     return *this;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
-    : AForm("RobotomyRequestForm", 72, 45), mTarget(target)
+    : AForm("RobotomyRequestForm", 72, 45, target)
 {
 }
 
@@ -28,14 +21,12 @@ void RobotomyRequestForm::executeAction() const
 {
     std::cout << "Brrrrr.. (Loud Drilling Noise) Brrrrr.." << std::endl;
 
-    srand(time(NULL));
-
     if (rand() % 2 == 0)
     {
-        std::cout << mTarget << " has been robotomized successfully" << std::endl;
+        std::cout << getTarget() << " has been robotomized successfully" << std::endl;
     }
     else
     {
-        std::cout << mTarget << " robotomization has failed" << std::endl;
+        std::cout << getTarget() << " robotomization has failed" << std::endl;
     }
 }

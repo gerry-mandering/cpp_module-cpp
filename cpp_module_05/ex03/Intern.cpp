@@ -1,25 +1,30 @@
 #include "Intern.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
-#include "ShruberryCreationForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 Intern::Intern()
 {
     initFormCreators();
+    initFormNames();
 }
 
 Intern::~Intern() {}
 
-Intern::Intern(Intern const &intern)
+Intern::Intern(Intern const &other)
 {
-    *this = intern;
+    *this = other;
 }
 
-Intern &Intern::operator=(Intern const &intern)
+Intern &Intern::operator=(Intern const &other)
 {
-    if (this != &intern)
+    if (this != &other)
     {
-        mFormCreators = intern.mFormCreators;
+        for (int i = 0; i < 3; i++)
+        {
+            mFormCreators[i] = other.mFormCreators[i];
+            mFormNames[i] = other.mFormNames[i];
+        }
     }
 
     return *this;
@@ -27,22 +32,20 @@ Intern &Intern::operator=(Intern const &intern)
 
 AForm *Intern::makeForm(const std::string &formName, const std::string &target)
 {
-    std::map< std::string, FormCreator >::iterator it = mFormCreators.find(formName);
+    int formCreatorIndex = getFormCreatorIndex(formName);
 
-    if (it == mFormCreators.end())
+    if (formCreatorIndex == -1)
     {
-        std::cerr << "Form " << formName << " not found" << std::endl;
+        std::cout << "Form " << formName << " not found" << std::endl;
         return NULL;
     }
 
-    std::cout << "Intern creates " << formName << std::endl;
-
-    return (this->*(it->second))(target);
+    return (this->*mFormCreators[formCreatorIndex])(target);
 }
 
-AForm *Intern::makeShruberryCreationForm(const std::string &target)
+AForm *Intern::makeShrubberyCreationForm(const std::string &target)
 {
-    return new ShruberryCreationForm(target);
+    return new ShrubberyCreationForm(target);
 }
 
 AForm *Intern::makeRobotomyRequestForm(const std::string &target)
@@ -57,7 +60,26 @@ AForm *Intern::makePresidentialPardonForm(const std::string &target)
 
 void Intern::initFormCreators()
 {
-    mFormCreators.insert(std::make_pair(std::string("shruberry creation"), &Intern::makeShruberryCreationForm));
-    mFormCreators.insert(std::make_pair(std::string("robotomy request"), &Intern::makeRobotomyRequestForm));
-    mFormCreators.insert(std::make_pair(std::string("presidential pardon"), &Intern::makePresidentialPardonForm));
+    mFormCreators[0] = &Intern::makeShrubberyCreationForm;
+    mFormCreators[1] = &Intern::makeRobotomyRequestForm;
+    mFormCreators[2] = &Intern::makePresidentialPardonForm;
+}
+
+void Intern::initFormNames() {
+    mFormNames[0] = "shrubbery creation";
+    mFormNames[1] = "robotomy request";
+    mFormNames[2] = "presidential pardon";
+}
+
+int Intern::getFormCreatorIndex(const std::string &formName)
+{
+    for (int i = 0; i < 3; i++)
+    {
+        if (mFormNames[i] == formName)
+        {
+            return i;
+        }
+    }
+
+    return -1;
 }
