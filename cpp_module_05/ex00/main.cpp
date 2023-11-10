@@ -18,6 +18,7 @@ int main(void) {
     // GradeTooLowException while constructing
     try {
         Bureaucrat weirdBureaucrat("Weird Bureaucrat", 151);
+        std::cout << weirdBureaucrat << std::endl;
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }

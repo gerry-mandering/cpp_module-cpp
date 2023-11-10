@@ -40,6 +40,8 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &target)
         return NULL;
     }
 
+    std::cout << "Intern creates " << formName << std::endl;
+
     return (this->*mFormCreators[formCreatorIndex])(target);
 }
 
