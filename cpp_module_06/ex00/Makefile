@@ -3,6 +3,9 @@ CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = $(SRCS:.cpp=.o)
 SRCS = main.cpp \
+		ScalarConverter.cpp \
+		StringTrimmer.cpp \
+		TypeDeterminer.cpp
 
 all: $(NAME)
 $(NAME): $(OBJS)

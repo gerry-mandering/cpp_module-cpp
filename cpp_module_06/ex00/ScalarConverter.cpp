@@ -17,8 +17,7 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &other)
 
 void ScalarConverter::convert(std::string &input)
 {
-    std::string trimmedInput = StringTrimmer::trim(input);
-    ScalarType type = TypeDeterminer::determineType(trimmedInput);
+    ScalarType type = TypeDeterminer::determineType(input);
 
     switch (type)
     {
@@ -26,17 +25,17 @@ void ScalarConverter::convert(std::string &input)
             std::cout << "Invalid input" << std::endl;
             break;
         case CHAR:
-            convertToChar(trimmedInput);
+            convertToChar(input);
             break;
         case INT:
-            convertToInt(trimmedInput);
+            convertToInt(input);
             break;
         case FLOAT:
-            convertToFloat(trimmedInput);
+            convertToFloat(input);
             break;
-        case DOUBLE:
-            convertToDouble(trimmedInput);
-            break;
+            //        case DOUBLE:
+            //            convertToDouble(input);
+            //            break;
         default:
             break;
     }
@@ -44,87 +43,87 @@ void ScalarConverter::convert(std::string &input)
 
 void ScalarConverter::convertToChar(std::string &input)
 {
-    char character = input[0];
-    std::cout << "char: '" << character << "'" << std::endl;
-    std::cout << "int: " << static_cast<int>(character) << std::endl;
-    std::cout << "float: " << static_cast<float>(character) << ".0f" << std::endl;
-    std::cout << "double: " << static_cast<double>(character) << ".0" << std::endl;
+    char charValue = input[0];
+    int intValue = static_cast< int >(charValue);
+    float floatValue = static_cast< float >(charValue);
+    double doubleValue = static_cast< double >(charValue);
+
+    std::cout << "char: '" << charValue << "'" << std::endl;
+    std::cout << "int: " << intValue << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1) << floatValue << "f" << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(1) << doubleValue << std::endl;
 }
 
 void ScalarConverter::convertToInt(std::string &input)
 {
-    int intNumber = std::strtol(input.c_str(), NULL, 10);
+    int intValue = std::strtol(input.c_str(), NULL, 10);
+    char charValue = static_cast< char >(intValue);
+    float floatValue = static_cast< float >(intValue);
+    double doubleValue = static_cast< double >(intValue);
 
-    char character = static_cast<char>(intNumber);
-    float floatNumber = static_cast<float>(intNumber);
-    double doubleNumber = static_cast<double>(intNumber);
-
-    if (isprint(intNumber)) {
-        std::cout << "char: '" << character << "'" << std::endl;
-    } else {
+    if (intValue < -128 || intValue > 127)
+    {
+        std::cout << "char: impossible" << std::endl;
+    }
+    else if (std::isprint(charValue))
+    {
+        std::cout << "char: '" << charValue << "'" << std::endl;
+    }
+    else
+    {
         std::cout << "char: Non displayable" << std::endl;
     }
-    std::cout << "int: " << intNumber << std::endl;
-    std::cout << "float: " << floatNumber << ".0f" << std::endl;
-    std::cout << "double: " << doubleNumber << ".0" << std::endl;
+    std::cout << "int: " << intValue << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1) << floatValue << "f" << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(1) << doubleValue << std::endl;
 }
 
 void ScalarConverter::convertToFloat(std::string &input)
 {
-    float floatNumber = std::strtof(input.c_str(), NULL);
+    double floatValue = std::strtod(input.c_str(), NULL);
+    char charValue = static_cast< char >(floatValue);
+    int intValue = static_cast< int >(floatValue);
+    double doubleValue = static_cast< double >(floatValue);
 
-    char character = static_cast<char>(floatNumber);
-    int intNumber = static_cast<int>(floatNumber);
-    double doubleNumber = static_cast<double>(floatNumber);
-
-    if (input == "-inff") {
-        printNegativeInfinity();
-        return ;
-    } else if (input == "+inff") {
-        printPositiveInfinity();
-        return ;
-    } else if (input == "nanf") {
-        printNotANumber();
-        return ;
+    if (floatValue < -128.0 || floatValue > 127.0)
+    {
+        std::cout << "char: impossible" << std::endl;
+    }
+    else if (std::isprint(charValue))
+    {
+        std::cout << "char: '" << charValue << "'" << std::endl;
+    }
+    else
+    {
+        std::cout << "char: Non displayable" << std::endl;
     }
 
-    std::cout << "char: '" << character << "'" << std::endl;
-    std::cout << "int: " << intNumber << std::endl;
-    if (floatNumber - intNumber == 0.0f) {
-        std::cout << "float: " << floatNumber << ".0f" << std::endl;
-    } else {
-        std::cout << "float: " << floatNumber << "f" << std::endl;
+    if (
+
+    if (hasDecimalPoint(floatValue))
+    {
+        std::cout << "float: " << std::fixed << std::setprecision(1) << floatValue << "f" << std::endl;
+        std::cout << "double: " << std::fixed << std::setprecision(1) << doubleValue << std::endl;
     }
-    std::cout << "double: " << doubleNumber << std::endl;
+    else
+    {
+        std::cout << "float: " << std::fixed << std::setprecision(1) << floatValue << "f" << std::endl;
+        std::cout << "double: " << std::fixed << std::setprecision(1) << doubleValue << std::endl;
+    }
 }
 
-void ScalarConverter::convertToDouble(std::string &input)
+bool ScalarConverter::hasDecimalPoint(float floatNumber)
 {
-    double doubleNumber = std::strtod(input.c_str(), NULL);
+    float intPart;
+    float fracPart = std::modf(floatNumber, &intPart);
+    return fracPart != 0.0f;
+}
 
-    char character = static_cast<char>(doubleNumber);
-    int intNumber = static_cast<int>(doubleNumber);
-    float floatNumber = static_cast<float>(doubleNumber);
-
-    if (input == "-inf") {
-        printNegativeInfinity();
-        return ;
-    } else if (input == "+inf") {
-        printPositiveInfinity();
-        return ;
-    } else if (input == "nan") {
-        printNotANumber();
-        return ;
-    }
-
-    std::cout << "char: '" << character << "'" << std::endl;
-    std::cout << "int: " << intNumber << std::endl;
-    if(doubleNumber - intNumber == 0.0) {
-        std::cout << "float: " << floatNumber << ".0f" << std::endl;
-    } else {
-        std::cout << "float: " << floatNumber << "f" << std::endl;
-    }
-    std::cout << "double: " << doubleNumber << std::endl;
+bool ScalarConverter::hasDecimalPoint(double doubleNumber)
+{
+    double intPart;
+    double fracPart = std::modf(doubleNumber, &intPart);
+    return fracPart != 0.0;
 }
 
 void ScalarConverter::printPositiveInfinity()
