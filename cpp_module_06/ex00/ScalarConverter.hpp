@@ -18,12 +18,11 @@ class ScalarConverter
     static void convertToChar(std::string &input);
     static void convertToInt(std::string &input);
     static void convertToFloat(std::string &input);
-//    static void convertToDouble(std::string &input);
+    static void convertToDouble(std::string &input);
 
   private:
     static bool hasDecimalPoint(float floatNumber);
     static bool hasDecimalPoint(double doubleNumber);
-    static int countDecimalPlaces(const std::string &input);
 
   private:
     static void printPositiveInfinity();

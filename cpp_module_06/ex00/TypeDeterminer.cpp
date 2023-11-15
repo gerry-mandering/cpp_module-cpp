@@ -135,6 +135,11 @@ bool TypeDeterminer::isFloat(const std::string &input)
         return false;
     }
 
+    if (!BoundaryChecker::isFloat(input.substr(0, input.length() - 1)))
+    {
+        return false;
+    }
+
     return true;
 }
 
@@ -157,6 +162,11 @@ bool TypeDeterminer::isDouble(const std::string &input)
 
     // endptr is not pointing to the null character
     if (*endptr != '\0')
+    {
+        return false;
+    }
+
+    if (!BoundaryChecker::isDouble(input))
     {
         return false;
     }

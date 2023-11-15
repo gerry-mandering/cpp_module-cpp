@@ -3,6 +3,7 @@
 
 #include "ScalarType.hpp"
 #include "StringTrimmer.hpp"
+#include "BoundaryChecker.hpp"
 #include <string>
 #include <limits>
 #include <cerrno>

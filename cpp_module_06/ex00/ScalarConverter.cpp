@@ -33,9 +33,9 @@ void ScalarConverter::convert(std::string &input)
         case FLOAT:
             convertToFloat(input);
             break;
-            //        case DOUBLE:
-            //            convertToDouble(input);
-            //            break;
+        case DOUBLE:
+            convertToDouble(input);
+            break;
         default:
             break;
     }
@@ -80,12 +80,28 @@ void ScalarConverter::convertToInt(std::string &input)
 
 void ScalarConverter::convertToFloat(std::string &input)
 {
-    double floatValue = std::strtod(input.c_str(), NULL);
+    float floatValue = std::strtof(input.c_str(), NULL);
     char charValue = static_cast< char >(floatValue);
     int intValue = static_cast< int >(floatValue);
     double doubleValue = static_cast< double >(floatValue);
 
-    if (floatValue < -128.0 || floatValue > 127.0)
+    if (input == "+inff")
+    {
+        printPositiveInfinity();
+        return;
+    }
+    else if (input == "-inff")
+    {
+        printNegativeInfinity();
+        return;
+    }
+    else if (input == "nanf")
+    {
+        printNotANumber();
+        return;
+    }
+
+    if (floatValue < std::numeric_limits< char >::lowest() || floatValue > std::numeric_limits< char >::max())
     {
         std::cout << "char: impossible" << std::endl;
     }
@@ -98,16 +114,101 @@ void ScalarConverter::convertToFloat(std::string &input)
         std::cout << "char: Non displayable" << std::endl;
     }
 
-    if (
+    if (floatValue >= 2147483648.0f || floatValue <= -2147483648.0f)
+    {
+        std::cout << "int: impossible" << std::endl;
+    }
+    else
+    {
+        std::cout << "int: " << intValue << std::endl;
+    }
 
     if (hasDecimalPoint(floatValue))
     {
-        std::cout << "float: " << std::fixed << std::setprecision(1) << floatValue << "f" << std::endl;
-        std::cout << "double: " << std::fixed << std::setprecision(1) << doubleValue << std::endl;
+        std::cout << "float: " << std::fixed << floatValue << "f" << std::endl;
     }
     else
     {
         std::cout << "float: " << std::fixed << std::setprecision(1) << floatValue << "f" << std::endl;
+    }
+
+    if (hasDecimalPoint(doubleValue))
+    {
+        std::cout << "double: " << std::fixed << doubleValue << std::endl;
+    }
+    else
+    {
+        std::cout << "double: " << std::fixed << std::setprecision(1) << doubleValue << std::endl;
+    }
+}
+
+void ScalarConverter::convertToDouble(std::string &input)
+{
+    double doubleValue = std::strtod(input.c_str(), NULL);
+    char charValue = static_cast< char >(doubleValue);
+    int intValue = static_cast< int >(doubleValue);
+    float floatValue = static_cast< float >(doubleValue);
+
+    if (input == "+inf")
+    {
+        printPositiveInfinity();
+        return;
+    }
+    else if (input == "-inf")
+    {
+        printNegativeInfinity();
+        return;
+    }
+    else if (input == "nan")
+    {
+        printNotANumber();
+        return;
+    }
+
+    if (doubleValue < std::numeric_limits< char >::lowest() || doubleValue > std::numeric_limits< char >::max())
+    {
+        std::cout << "char: impossible" << std::endl;
+    }
+    else if (std::isprint(charValue))
+    {
+        std::cout << "char: '" << charValue << "'" << std::endl;
+    }
+    else
+    {
+        std::cout << "char: Non displayable" << std::endl;
+    }
+
+    if (doubleValue > std::numeric_limits< int >::max() || doubleValue < std::numeric_limits< int >::lowest())
+    {
+        std::cout << "int: impossible" << std::endl;
+    }
+    else
+    {
+        std::cout << "int: " << intValue << std::endl;
+    }
+
+    if (doubleValue > std::numeric_limits< float >::max() || doubleValue < std::numeric_limits< float >::lowest())
+    {
+        std::cout << "float: impossible" << std::endl;
+    }
+    else
+    {
+        if (hasDecimalPoint(floatValue))
+        {
+            std::cout << "float: " << std::fixed << floatValue << "f" << std::endl;
+        }
+        else
+        {
+            std::cout << "float: " << std::fixed << std::setprecision(1) << floatValue << "f" << std::endl;
+        }
+    }
+
+    if (hasDecimalPoint(doubleValue))
+    {
+        std::cout << "double: " << std::fixed << doubleValue << std::endl;
+    }
+    else
+    {
         std::cout << "double: " << std::fixed << std::setprecision(1) << doubleValue << std::endl;
     }
 }
