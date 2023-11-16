@@ -1,5 +1,10 @@
 #include "BoundaryChecker.hpp"
 
+/*
+ * Boundary Reference
+ * https://stackoverflow.com/questions/48630106/what-are-the-actual-min-max-values-for-float-and-double-c
+ */
+
 const std::string BoundaryChecker::FLOAT_MIN = "-340282346638528859811704183484516925440";
 
 const std::string BoundaryChecker::FLOAT_MAX = "340282346638528859811704183484516925440";
@@ -44,6 +49,7 @@ bool BoundaryChecker::isFloat(const std::string &input)
         return true;
     }
 
+    // compare value if length is equal
     if (strcmp(integerPart.c_str(), floatBoundary.c_str()) > 0)
     {
         return false;
@@ -52,11 +58,13 @@ bool BoundaryChecker::isFloat(const std::string &input)
     {
         std::string decimalPart = truncateBeforeDecimalPoint(input);
 
+        // Example : 123.
         if (decimalPart.empty())
         {
             return true;
         }
 
+        // Example : 123.00000(true), 123.00001(false)
         for (size_t i = 0; i < decimalPart.size(); ++i)
         {
             if (decimalPart[i] != '0')
@@ -84,6 +92,7 @@ bool BoundaryChecker::isDouble(const std::string &input)
         return true;
     }
 
+    // compare value if length is equal
     if (strcmp(integerPart.c_str(), doubleBoundary.c_str()) > 0)
     {
         return false;
@@ -92,11 +101,13 @@ bool BoundaryChecker::isDouble(const std::string &input)
     {
         std::string decimalPart = truncateBeforeDecimalPoint(input);
 
+        // Example : 123.
         if (decimalPart.empty())
         {
             return true;
         }
 
+        // Example : 123.00000(true), 123.00001(false)
         for (size_t i = 0; i < decimalPart.size(); ++i)
         {
             if (decimalPart[i] != '0')

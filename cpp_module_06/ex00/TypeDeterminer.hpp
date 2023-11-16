@@ -2,7 +2,6 @@
 #define TYPEDETERMINER_HPP
 
 #include "ScalarType.hpp"
-#include "StringTrimmer.hpp"
 #include "BoundaryChecker.hpp"
 #include <string>
 #include <limits>
@@ -12,7 +11,7 @@
 class TypeDeterminer
 {
   public:
-    static ScalarType determineType(std::string &input);
+    static ScalarType determineType(const std::string &input);
 
   private:
     static bool isChar(const std::string &input);

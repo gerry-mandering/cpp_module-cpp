@@ -15,15 +15,8 @@ TypeDeterminer &TypeDeterminer::operator=(TypeDeterminer const &other)
     return (*this);
 }
 
-ScalarType TypeDeterminer::determineType(std::string &input)
+ScalarType TypeDeterminer::determineType(const std::string &input)
 {
-    if (input == " ")
-    {
-        return CHAR;
-    }
-
-    StringTrimmer::trim(input);
-
     if (isChar(input))
     {
         return CHAR;
@@ -58,10 +51,9 @@ bool TypeDeterminer::isChar(const std::string &input)
 
 bool TypeDeterminer::isFloatPseudoLiteral(const std::string &input)
 {
-    static const char *pseudoLiterals[] = {"-inff", "+inff", "nanf"};
-    static const size_t numLiterals = sizeof(pseudoLiterals) / sizeof(pseudoLiterals[0]);
+    static const char *pseudoLiterals[] = {"inff", "+inff", "-inff", "nanf", "+nanf", "-nanf"};
 
-    for (size_t i = 0; i < numLiterals; ++i)
+    for (int i = 0; i < 6; ++i)
     {
         if (input == pseudoLiterals[i])
         {
@@ -73,10 +65,9 @@ bool TypeDeterminer::isFloatPseudoLiteral(const std::string &input)
 
 bool TypeDeterminer::isDoublePseudoLiteral(const std::string &input)
 {
-    static const char *pseudoLiterals[] = {"-inf", "+inf", "nan"};
-    static const size_t numLiterals = sizeof(pseudoLiterals) / sizeof(pseudoLiterals[0]);
+    static const char *pseudoLiterals[] = {"inf", "+inf", "-inf", "nan", "+nan", "-nan"};
 
-    for (size_t i = 0; i < numLiterals; ++i)
+    for (int i = 0; i < 6; ++i)
     {
         if (input == pseudoLiterals[i])
         {
@@ -135,6 +126,7 @@ bool TypeDeterminer::isFloat(const std::string &input)
         return false;
     }
 
+    // comparing the input string with the float boundary values
     if (!BoundaryChecker::isFloat(input.substr(0, input.length() - 1)))
     {
         return false;
@@ -166,6 +158,7 @@ bool TypeDeterminer::isDouble(const std::string &input)
         return false;
     }
 
+    // comparing the input string with the double boundary values
     if (!BoundaryChecker::isDouble(input))
     {
         return false;
