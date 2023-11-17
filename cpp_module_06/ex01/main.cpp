@@ -25,5 +25,7 @@ int main(void)
         std::cout << "Serialize and deserialize data are not the same" << std::endl;
     }
 
+    delete data;
+
     return 0;
 }

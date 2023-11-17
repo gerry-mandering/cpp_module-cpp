@@ -56,7 +56,8 @@ void ScalarConverter::convertToFloat(const std::string &input)
 {
     float floatValue = std::strtof(input.c_str(), NULL);
 
-    if (input == "inff" || input == "+inff" || input == "-inff" || input == "nanf" || input == "+nanf" || input == "-nanf")
+    if (input == "inff" || input == "+inff" || input == "-inff" || input == "nanf" || input == "+nanf" ||
+        input == "-nanf")
     {
         printPseudoLiteral(input);
         return;
@@ -78,20 +79,6 @@ void ScalarConverter::convertToDouble(const std::string &input)
     printConvertedValues(doubleValue);
 }
 
-bool ScalarConverter::hasDecimalPoint(float floatNumber)
-{
-    float intPart;
-    float fracPart = std::modf(floatNumber, &intPart);
-    return fracPart != 0.0f;
-}
-
-bool ScalarConverter::hasDecimalPoint(double doubleNumber)
-{
-    double intPart;
-    double fracPart = std::modf(doubleNumber, &intPart);
-    return fracPart != 0.0;
-}
-
 void ScalarConverter::printPseudoLiteral(const std::string &input)
 {
     std::cout << "char: impossible" << std::endl;
@@ -107,7 +94,8 @@ void ScalarConverter::printPseudoLiteral(const std::string &input)
         std::cout << "float: -inff" << std::endl;
         std::cout << "double: -inf" << std::endl;
     }
-    else if (input == "nanf" || input == "nan" || input == "+nanf" || input == "+nan" || input == "-nanf" || input == "-nan")
+    else if (input == "nanf" || input == "nan" || input == "+nanf" || input == "+nan" || input == "-nanf" ||
+             input == "-nan")
     {
         std::cout << "float: nanf" << std::endl;
         std::cout << "double: nan" << std::endl;
@@ -169,10 +157,10 @@ void ScalarConverter::printConvertedValues(float floatValue)
         std::cout << "char: Non displayable" << std::endl;
     }
 
-    // numeric_limits로 비교했을때 1차적으로 변환된 floatValue가 2147483648.0f 일때도 int가 impossible이 안 나오는 문제 발생
-    // floatValue가 2147483648.0f 일 때 - floatValue == std::numeric_limits< int >::max()
-    // floatValue가 -2147483648.0f 일 때 - floatValue == std::numeric_limits< int >::lowest()
-    // float binary 표현 - https://www.h-schmidt.net/FloatConverter/IEEE754.html
+    // numeric_limits로 비교했을때 1차적으로 변환된 floatValue가 2147483648.0f 일때도 int가 impossible이 안 나오는 문제
+    // 발생 floatValue가 2147483648.0f 일 때 - floatValue == std::numeric_limits< int >::max() floatValue가
+    // -2147483648.0f 일 때 - floatValue == std::numeric_limits< int >::lowest() float binary 표현 -
+    // https://www.h-schmidt.net/FloatConverter/IEEE754.html
     if (floatValue < -2147483648.0f || floatValue >= 2147483648.0f)
     {
         std::cout << "int: impossible" << std::endl;
@@ -253,4 +241,18 @@ void ScalarConverter::printConvertedValues(double doubleValue)
     {
         std::cout << "double: " << std::fixed << std::setprecision(1) << doubleValue << std::endl;
     }
+}
+
+bool ScalarConverter::hasDecimalPoint(float floatNumber)
+{
+    float intPart;
+    float fracPart = std::modf(floatNumber, &intPart);
+    return fracPart != 0.0f;
+}
+
+bool ScalarConverter::hasDecimalPoint(double doubleNumber)
+{
+    double intPart;
+    double fracPart = std::modf(doubleNumber, &intPart);
+    return fracPart != 0.0;
 }
