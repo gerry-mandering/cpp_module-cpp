@@ -29,7 +29,7 @@ void Span::addNumber(int number)
 {
     if (mContainer.size() == mSize)
     {
-        throw ContainerFullException();
+        throw Span::ContainerFullException();
     }
 
     mContainer.push_back(number);
@@ -39,7 +39,7 @@ long long Span::shortestSpan()
 {
     if (mContainer.size() < 2)
     {
-        throw NotEnoughElementsException();
+        throw Span::NotEnoughElementsException();
     }
 
     std::vector< int > tmp(mContainer);
@@ -65,7 +65,7 @@ long long Span::longestSpan()
 {
     if (mContainer.size() < 2)
     {
-        throw NotEnoughElementsException();
+        throw Span::NotEnoughElementsException();
     }
 
     std::vector< int > tmp(mContainer);

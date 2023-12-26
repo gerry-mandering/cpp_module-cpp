@@ -15,8 +15,8 @@ class Span
 
   public:
     Span();
-    ~Span()
-        Span(const Span &span);
+    ~Span();
+    Span(const Span &span);
     Span &operator=(const Span &span);
 
   public:
@@ -31,10 +31,10 @@ class Span
     std::vector< int >::iterator end();
     std::vector< int >::const_iterator end() const;
     template < class InputIt >
-    std::vector< int >::iterator insert(std::vector< int >::const_iterator pos, InputIt first, InputIt last)
+    std::vector< int >::iterator insert(std::vector<int>::const_iterator pos, InputIt first, InputIt last)
     {
         int distance = std::distance(first, last);
-        if (distance > (int)(mSize - mContainer.size()))
+        if (distance > static_cast<int>(mSize - mContainer.size()))
         {
             throw ContainerFullException();
         }
@@ -54,4 +54,4 @@ class Span
     };
 };
 
-;#endif
+#endif

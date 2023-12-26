@@ -3,6 +3,15 @@
 
 int main()
 {
+//    std::vector<int> v;
+//    v.push_back(1);
+//    v.push_back(2);
+//    v.push_back(3);
+//
+//    std::vector<int> v2;
+//    std::vector<int>::iterator iter = v2.begin();
+//    v2.insert(iter, v.begin(), v.end());
+
     try
     {
         // Test default constructor
@@ -93,7 +102,8 @@ int main()
             std::vector< int > moreNumbers;
             moreNumbers.push_back(4);
             moreNumbers.push_back(5);
-            fullSpanForInsert.insert(fullSpanForInsert.end(), moreNumbers.begin(), moreNumbers.end());
+            std::vector<int>::iterator iter2 = fullSpanForInsert.end();
+            fullSpanForInsert.insert(iter2, moreNumbers.begin(), moreNumbers.end());
             std::cout << "ContainerFullException on insert test failed." << std::endl;
         }
         catch (const Span::ContainerFullException &)
