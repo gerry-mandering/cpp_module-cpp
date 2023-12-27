@@ -2,5 +2,5 @@
 
 const char *NotFoundException::what() const throw()
 {
-    return "Not found";
+    return "Target Not found";
 }

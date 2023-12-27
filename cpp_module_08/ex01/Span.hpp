@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <cstdlib>
 #include <exception>
-#include <iterator>
 #include <vector>
 
 class Span
@@ -26,20 +25,27 @@ class Span
     long long longestSpan();
 
   public:
+    typedef std::vector< int >::iterator iterator;
+    typedef std::vector< int >::const_iterator const_iterator;
+
+  public:
     std::vector< int >::iterator begin();
     std::vector< int >::const_iterator begin() const;
     std::vector< int >::iterator end();
     std::vector< int >::const_iterator end() const;
+
+  public:
     template < class InputIt >
-    std::vector< int >::iterator insert(std::vector<int>::const_iterator pos, InputIt first, InputIt last)
+    void addNumber(std::vector<int>::const_iterator pos, InputIt first, InputIt last)
     {
-        int distance = std::distance(first, last);
-        if (distance > static_cast<int>(mSize - mContainer.size()))
+        int insertSize = std::distance(first, last);
+        int remainingSize = mSize - mContainer.size();
+        if (insertSize > remainingSize)
         {
-            throw ContainerFullException();
+            throw Span::ContainerFullException();
         }
 
-        return mContainer.insert(pos, first, last);
+        mContainer.insert(pos, first, last);
     }
 
   public:
