@@ -68,9 +68,15 @@ double RPNCalculator::calculate(const std::string &expression)
         }
     }
 
+    // ./RPN "    "
+    if (mStack.empty() == true)
+    {
+        throw RPNCalculator::InvalidExpressionException();
+    }
     result = mStack.top();
     mStack.pop();
 
+    // ./RPN "1 2"
     if (mStack.empty() == false)
     {
         throw RPNCalculator::InvalidExpressionException();
