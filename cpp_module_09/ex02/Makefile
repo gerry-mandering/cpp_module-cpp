@@ -1,11 +1,11 @@
-NAME = RPN
+NAME = PmergeMe
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+#CPPFLAGS = -Wall -Wextra -Werror -std=c++11	# TODO 수정!
+CPPFLAGS = -std=c++11 # TODO 수정!
+#CPPFLAGS = -std=c++11 -fsanitize=address
 OBJS = $(SRCS:.cpp=.o)
 SRCS = main.cpp \
-	   RPN.cpp \
-	   ./validator/ExpressionValidator.cpp \
-	   ./calculator/RPNCalculator.cpp
+	   PmergeMe.cpp
 
 all: $(NAME)
 $(NAME): $(OBJS)
