@@ -45,7 +45,5 @@ void Database::addExchangeRate(const std::string &date, double exchangeRate)
 double Database::getExchangeRate(const std::string &date) const
 {
     std::map< std::string, double >::const_iterator iter = mExchangeRates.upper_bound(date);
-    --iter;
-
-    return iter->second;
+    return (iter == mExchangeRates.begin()) ? iter->second : (--iter)->second;
 }
