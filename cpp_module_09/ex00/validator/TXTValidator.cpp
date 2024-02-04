@@ -24,13 +24,15 @@ bool TXTValidator::isHeaderValid(const std::string &header)
 
 bool TXTValidator::isValid(const std::string &line)
 {
+    // check line has pipe
     std::string::size_type pos = line.find('|');
     if (std::string::npos == pos)
     {
-        std::cout << "Error: bad input => " << line << std::endl;
+        std::cout << "Error: bad input format => " << line << std::endl;
         return false;
     }
 
+    // extract date and validate
     std::string date = StringTrimmer::trim(line.substr(0, pos));
     if (isDateValid(date) == false)
     {
@@ -38,6 +40,7 @@ bool TXTValidator::isValid(const std::string &line)
         return false;
     }
 
+    // extract value and validate
     std::string value = StringTrimmer::trim(line.substr(pos + 1));
     if (isValueValid(value) == false)
     {

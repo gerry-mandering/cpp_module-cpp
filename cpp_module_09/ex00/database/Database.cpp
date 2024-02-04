@@ -45,5 +45,21 @@ void Database::addExchangeRate(const std::string &date, double exchangeRate)
 double Database::getExchangeRate(const std::string &date) const
 {
     std::map< std::string, double >::const_iterator iter = mExchangeRates.upper_bound(date);
-    return (iter == mExchangeRates.begin()) ? iter->second : (--iter)->second;
+
+    if (iter == mExchangeRates.begin())
+    {
+        if (date < iter->first)
+        {
+            throw InvalidDateException();
+        }
+
+        return iter->second;
+    }
+
+    return (--iter)->second;
+}
+
+const char *Database::InvalidDateException::what() const throw()
+{
+    return "Invalid date - before first date in database";
 }

@@ -19,14 +19,10 @@ CSVParser::CSVParser(Validator *validator) : Parser(validator) {}
 
 void CSVParser::processValidLine(const std::string &line)
 {
-    std::stringstream ss(line);
-    std::string date, exchangeRateStr;
+    std::string::size_type commaPos = line.find(',');
 
-    std::getline(ss, date, ',');
-    std::getline(ss, exchangeRateStr);
-
-    date = StringTrimmer::trim(date);
-    exchangeRateStr = StringTrimmer::trim(exchangeRateStr);
+    std::string date = StringTrimmer::trim(line.substr(0, commaPos));
+    std::string exchangeRateStr = StringTrimmer::trim(line.substr(commaPos + 1));
 
     double exchangeRate = std::strtod(exchangeRateStr.c_str(), NULL);
 

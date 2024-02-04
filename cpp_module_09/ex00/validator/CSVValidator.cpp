@@ -24,18 +24,21 @@ bool CSVValidator::isHeaderValid(const std::string &header)
 
 bool CSVValidator::isValid(const std::string &line)
 {
+    // check line has comma
     std::string::size_type pos = line.find(',');
     if (std::string::npos == pos)
     {
         throw std::invalid_argument("Invalid CSV file");
     }
 
+    // extract date and validate
     std::string date = StringTrimmer::trim(line.substr(0, pos));
     if (isDateValid(date) == false)
     {
         throw std::invalid_argument("Invalid CSV file");
     }
 
+    // extract exchangeRate and validate
     std::string exchangeRate = StringTrimmer::trim(line.substr(pos + 1));
     if (isExchangeRateValid(exchangeRate) == false)
     {

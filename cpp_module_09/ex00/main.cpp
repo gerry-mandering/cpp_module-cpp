@@ -8,11 +8,10 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    BitcoinExchange::Builder builder;
-    BitcoinExchange exchange = builder
-                                   .setDataFileName("data.csv")
-                                   .setInputFileName(argv[1])
-                                   .build();
+    BitcoinExchange exchange = BitcoinExchange::Builder()
+                                                .setDataFileName("data.csv")
+                                                .setInputFileName(argv[1])
+                                                .build();
     exchange.run();
 
     return 0;

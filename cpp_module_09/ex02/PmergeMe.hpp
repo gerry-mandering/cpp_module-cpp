@@ -1,34 +1,25 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
-#include <cmath>
 #include <iostream>
-#include <vector>
+#include "./validator/ArgumentValidator.hpp"
+#include "./sorter/DequeSorter.hpp"
+#include "./sorter/VectorSorter.hpp"
 
 class PmergeMe
 {
   private:
-    typedef std::vector< int >::iterator Iterator;
-    static const int ARRAY_SIZE = 31;
-    static const int jacobsthal[ARRAY_SIZE];
-
-  private:
     int mArgc;
     char **mArgv;
-    std::vector< int > v;
-
-  public:
-    ~PmergeMe();
 
   public:
     PmergeMe(int argc, char **argv);
+    ~PmergeMe();
+
     void run();
 
   private:
-    void printVector() const;
-    void swapGroup(Iterator front, Iterator back, int groupSize);
-    std::vector< Iterator >::iterator binaryInsertion(std::vector< Iterator >::iterator start, std::vector< Iterator >::iterator end, Iterator target);
-    void fordJohnsonSort(int groupSize);
+  void printTime(double time, const std::string &sorterName) const;
 
   private:
     PmergeMe();

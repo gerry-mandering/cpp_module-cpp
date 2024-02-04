@@ -1,4 +1,5 @@
 #include "ExpressionValidator.hpp"
+#include <iostream>
 
 ExpressionValidator::ExpressionValidator() {}
 
@@ -41,6 +42,12 @@ bool ExpressionValidator::validate(const std::string &expression)
         {
             return false;
         }
+    }
+
+    // ./RPN "    " - no token
+    if (token.empty() == true)
+    {
+        return false;
     }
 
     return true;

@@ -9,6 +9,7 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
     *this = other;
 }
 
+// Used by the Builder
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
     if (this != &other)
@@ -28,10 +29,12 @@ void BitcoinExchange::run()
 {
     try
     {
+        // Parse data.csv and store in database
         Parser *dataParser = ParserFactory::createParser("csv");
         dataParser->parse(mDataFileName);
         delete dataParser;
 
+        // Parse input.txt and calculate exchange rate
         Parser *inputParser = ParserFactory::createParser("txt");
         inputParser->parse(mInputFileName);
         delete inputParser;

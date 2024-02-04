@@ -1,11 +1,12 @@
 NAME = PmergeMe
 CPP = c++
-#CPPFLAGS = -Wall -Wextra -Werror -std=c++11	# TODO 수정!
-CPPFLAGS = -std=c++11 # TODO 수정!
-#CPPFLAGS = -std=c++11 -fsanitize=address
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = $(SRCS:.cpp=.o)
 SRCS = main.cpp \
-	   PmergeMe.cpp
+	   PmergeMe.cpp \
+	   validator/ArgumentValidator.cpp \
+	   sorter/VectorSorter.cpp \
+	   sorter/DequeSorter.cpp
 
 all: $(NAME)
 $(NAME): $(OBJS)

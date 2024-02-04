@@ -1,11 +1,10 @@
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 
-#include "./parser/ParserFactory.hpp"
 #include "./parser/Parser.hpp"
+#include "./parser/ParserFactory.hpp"
 #include <string>
 
-// Bitcoin 환전소
 class BitcoinExchange
 {
   private:
@@ -26,6 +25,9 @@ class BitcoinExchange
   public:
     void run();
 
+    /**
+     * @brief Builder class for BitcoinExchange
+     */
     class Builder
     {
       private:

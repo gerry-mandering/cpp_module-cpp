@@ -19,17 +19,20 @@ TXTParser::TXTParser(Validator *validator) : Parser(validator) {}
 
 void TXTParser::processValidLine(const std::string &line)
 {
-    std::stringstream ss(line);
-    std::string date, valueStr;
+    std::string::size_type pipePos = line.find('|');
 
-    std::getline(ss, date, '|');
-    std::getline(ss, valueStr);
-
-    date = StringTrimmer::trim(date);
-    valueStr = StringTrimmer::trim(valueStr);
+    std::string date = StringTrimmer::trim(line.substr(0, pipePos));
+    std::string valueStr = StringTrimmer::trim(line.substr(pipePos + 1));
 
     float value = std::strtof(valueStr.c_str(), NULL);
-    double price = Database::getInstance()->getExchangeRate(date);
 
-    std::cout << date << " => " << value << " = " << value * price << std::endl;
+    try
+    {
+        double price = Database::getInstance()->getExchangeRate(date);
+        std::cout << date << " => " << value << " = " << value * price << std::endl;
+    }
+    catch (const Database::InvalidDateException &e)
+    {
+        std::cerr << "Error: " << e.what() << " => " << date << std::endl;
+    }
 }

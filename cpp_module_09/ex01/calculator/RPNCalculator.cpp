@@ -25,11 +25,12 @@ double RPNCalculator::calculate(const std::string &expression)
     {
         if (std::isdigit(token[0]) == true)
         {
-            mStack.push(std::strtod(token.c_str(), NULL));
+            mStack.push(std::atoi(token.c_str()));
         }
 
         if (token == "+" || token == "-" || token == "/" || token == "*")
         {
+            // no operands
             if (mStack.empty() == true)
             {
                 throw RPNCalculator::InvalidExpressionException();
@@ -37,6 +38,7 @@ double RPNCalculator::calculate(const std::string &expression)
             rightOperand = mStack.top();
             mStack.pop();
 
+            // no operands
             if (mStack.empty() == true)
             {
                 throw RPNCalculator::InvalidExpressionException();
@@ -68,11 +70,6 @@ double RPNCalculator::calculate(const std::string &expression)
         }
     }
 
-    // ./RPN "    "
-    if (mStack.empty() == true)
-    {
-        throw RPNCalculator::InvalidExpressionException();
-    }
     result = mStack.top();
     mStack.pop();
 
