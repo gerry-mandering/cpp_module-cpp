@@ -54,7 +54,7 @@ double DequeSorter::run()
  */
 void DequeSorter::initializeNumbers()
 {
-    for (int i = 1; i < mArgc; i++)
+    for (int i = 1; i < mArgc; ++i)
     {
         mNumbers.push_back(std::atoi(mArgv[i]));
     }
@@ -65,7 +65,7 @@ void DequeSorter::initializeNumbers()
  */
 void DequeSorter::swapGroup(Iterator groupBegin, Iterator nextGroupBegin, int sizeOfSingleGroup)
 {
-    for (int i = 0; i < sizeOfSingleGroup; i++)
+    for (int i = 0; i < sizeOfSingleGroup; ++i)
     {
         std::iter_swap(groupBegin + i, nextGroupBegin + i);
     }

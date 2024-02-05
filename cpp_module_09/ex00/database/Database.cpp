@@ -44,6 +44,7 @@ void Database::addExchangeRate(const std::string &date, double exchangeRate)
 
 double Database::getExchangeRate(const std::string &date) const
 {
+    // Returns an iterator pointing to the first element in the container whose key is considered to go after k.
     std::map< std::string, double >::const_iterator iter = mExchangeRates.upper_bound(date);
 
     if (iter == mExchangeRates.begin())
